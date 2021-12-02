@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="com.net.controller" />
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/schindlerperformance" />
+		<property name="username" value="root" /> <!-- asset_mgmt -->
+		<property name="password" value="root" /> <!-- asset_mgmt@11 -->
+	</bean>
+
+	<bean id="localSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<!-- List Model Respect to Table -->
+				<value>com.net.model.User</value>
+				<value>com.net.model.Role</value>
+				<value>com.net.model.UserType</value>
+				<value>com.net.model.Employee</value>
+				<value>com.net.model.Performance</value>
+				<value>com.net.model.Suppliertype</value>
+				<value>com.net.model.Supplier</value>
+				<value>com.net.model.Fpy</value>
+				<value>com.net.model.Otd</value>
+				<value>com.net.model.Ppm</value>
+				<value>com.net.model.Ppm2</value>
+				<value>com.net.model.Supplierstatus</value>
+				<value>com.net.model.Escalation</value>
+				<value>com.net.model.Sale</value>
+
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			
+   				  <prop key="hibernate.max_fetch_depth">0</prop>
+ 
+			</props>
+		</property>
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<constructor-arg name="sessionFactory" ref="localSessionFactory"/>  
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<!-- Module Bean Object Creation -->
+	<!-- User Module -->
+	<bean id="userDao" class="com.net.dao.UserDaoImpl"></bean>
+	<bean id="userServices" class="com.net.services.UserServicesImpl">
+		<constructor-arg index="0" ref="userDao"></constructor-arg>
+	</bean>
+
+
+
+	<!-- Employee Module -->
+	<bean id="employeeDao" class="com.net.dao.EmployeeDaoImpl"></bean>
+	<bean id="employeeServices" class="com.net.services.EmployeeServicesImpl">
+		<constructor-arg index="0" ref="employeeDao"></constructor-arg>
+	</bean>
+
+	<!-- Performance Module -->
+	<bean id="performanceDao" class="com.net.dao.PerformanceDaoImpl"></bean>
+	<bean id="performanceServices" class="com.net.services.PerformanceServicesImpl">
+		<constructor-arg index="0" ref="performanceDao"></constructor-arg>
+	</bean>
+
+	<!-- Suppliertype Module -->
+	<bean id="suppliertypeDao" class="com.net.dao.SuppliertypeDaoImpl"></bean>
+	<bean id="suppliertypeServices" class="com.net.services.SuppliertypeServicesImpl">
+		<constructor-arg index="0" ref="suppliertypeDao"></constructor-arg>
+	</bean>
+
+	<!-- Supplier Module -->
+	<bean id="supplierDao" class="com.net.dao.SupplierDaoImpl"></bean>
+	<bean id="supplierServices" class="com.net.services.SupplierServicesImpl">
+		<constructor-arg index="0" ref="supplierDao"></constructor-arg>
+	</bean>
+
+	<!-- Fpy Module -->
+	<bean id="fpyDao" class="com.net.dao.FpyDaoImpl"></bean>
+	<bean id="fpyServices" class="com.net.services.FpyServicesImpl">
+		<constructor-arg index="0" ref="fpyDao"></constructor-arg>
+	</bean>
+
+	<!-- Otd Module -->
+	<bean id="otdDao" class="com.net.dao.OtdDaoImpl"></bean>
+	<bean id="otdServices" class="com.net.services.OtdServicesImpl">
+		<constructor-arg index="0" ref="otdDao"></constructor-arg>
+	</bean>
+
+	<!-- Ppm Module -->
+	<bean id="ppmDao" class="com.net.dao.PpmDaoImpl"></bean>
+	<bean id="ppmServices" class="com.net.services.PpmServicesImpl">
+		<constructor-arg index="0" ref="ppmDao"></constructor-arg>
+	</bean>
+
+	<!-- Supplierstatus Module -->
+	<bean id="supplierstatusDao" class="com.net.dao.SupplierstatusDaoImpl"></bean>
+	<bean id="supplierstatusServices" class="com.net.services.SupplierstatusServicesImpl">
+		<constructor-arg index="0" ref="supplierstatusDao"></constructor-arg>
+	</bean>
+
+	<!-- Escalation Module -->
+	<bean id="escalationDao" class="com.net.dao.EscalationDaoImpl"></bean>
+	<bean id="escalationServices" class="com.net.services.EscalationServicesImpl">
+		<constructor-arg index="0" ref="escalationDao"></constructor-arg>
+	</bean>
+	<!-- Sale Module -->
+	<bean id="saleDao" class="com.net.dao.SaleDaoImpl"></bean>
+	<bean id="saleServices" class="com.net.services.SaleServicesImpl">
+		<constructor-arg index="0" ref="saleDao"></constructor-arg>
+	</bean>
+
+	<!-- Final Report Module -->
+ 	<!-- <bean id="finalReportDao" class="com.net.dao.FinalReportDaoImpl"></bean>
+	<bean id="finalReportService" class="com.net.services.FinalReportServiceImpl">
+		<constructor-arg index="0" ref="finalReportDao"></constructor-arg>
+	</bean> -->
+<tx:annotation-driven transaction-manager="txManager" />
+
+</beans>

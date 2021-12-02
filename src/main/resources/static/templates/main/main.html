@@ -1,0 +1,276 @@
+<script src="templates/views/js/jquery/jquery-2.2.4.min.js"></script>
+<script src="templates/views/js/main.js"></script>
+<style>
+.toggleButton {
+	background-color: transparent;
+	border: 0px;
+}
+
+#lines {
+	background-color: transparent;
+	border: 1px;
+}
+   
+.mydiv {  
+    position:absolute;
+    top:0;
+    overflow: hidden;
+    left:0;
+    width:100%;
+    height:150%;
+    z-index:1000;
+    background-color:grey;
+    opacity: .8;
+ }
+
+.ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -22px;  /* -1 * image height / 2 */
+    display: block;   
+    }  
+</style>
+<div ng-if="loader" class="mydiv"> 
+	 <img src="img/loading.gif" class="ajax-loader"/>
+</div> 
+      
+<div class="main-wrapper">
+	<nav class="navbar top-navbar bg-white box-shadow">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="navbar-header">
+					<a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+					<div class="top-left-part" style="margin-top: 10px;">
+						<div class="col-md-12">
+							<div class="col-md-3">
+								<a class="logo" style="display: inline-block;"> <span
+									class="hidden-xs" style="font-size: 21px; margin-top: 7px;">
+										<i class="fa fa-bars" ng-click="ShowHide()"></i>
+								</span>
+								</a>
+							</div>
+							<div class="col-md-9">
+								<a href="index.html"> <img
+									src="templates/views/images/Schindler-log.png" alt="isser"
+									class="logo img-responsive">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-collapse-1" style="padding-top: 17px; padding-bottom: 17px;">
+					<ul class="nav navbar-nav navbar-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+						<li class="dropdown link" ng-class="{ link: openLogout == false , open : openLogout == true}">
+							<b style="padding: 50px;">{{vm.user.fname}}-{{vm.user.role.role_name}}</b>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="content-wrapper">
+		<div class="content-container">
+			<div class="left-sidebar bg-black-300 box-shadow" ng-show="IsVisible">
+				<div class="sidebar-content">
+					<div class="user-info closed">
+						<img src="templates/views/images/img.jpg" alt="John Doe" class="img-circle profile-img img-responsive"> 
+						<b>{{vm.user.fname}} {{vm.user.lname}} - {{vm.user.userType.user_type_name}} {{vm.user.role.role_name}}</b> 
+						<small class="info">UI Developer</small>
+					</div>
+					<div class="sidebar-nav">
+						<ul class="side-nav color-gray">
+							<li class="nav-header"><span class="">MAIN CATEGORY</span></li>
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 0;" ng-if="vm.user.role.role_id==1">
+								<a ui-sref="main.home"> <i class="fa fa-home"> </i> <span>DASHBOARD</span></a>
+							</li>
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 0;" ng-if="vm.user.role.role_id==2">
+								<a ui-sref="main.home2"> <i class="fa fa-home"> </i> <span>DASHBOARD</span></a>
+							</li>
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 0;" ng-if="vm.user.role.role_id==3">
+								<a ui-sref="main.home3"> <i class="fa fa-home"> </i> <span>DASHBOARD</span></a>
+							</li>
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 0;" ng-if="vm.user.role.role_id==4">
+								<a ui-sref="main.home4"> <i class="fa fa-home"> </i> <span>DASHBOARD</span></a>
+							</li>
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 0;">
+								<a ui-sref="main.password"> <i class="fa fa-unlock-alt"> </i> <span>CHANGE PASSWORD</span></a>
+							</li>
+							<li ui-sref-active="active" ng-click="expand = !expand ; transactions = 0;reports = 0;">
+								<a ui-sref=""> 
+									<i class="fa fa-database"> </i> 
+									<span>MASTERS</span>
+									<span class="fa fa-caret-down" style="float: right; padding-top: 5px"></span>
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-hide="expand" ng-if="vm.user.role.role_id==1">
+								<a ui-sref="main.user"> 
+									<i class="fa fa-user" aria-hidden="true"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>USER MASTER
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-hide="expand" ng-if="vm.user.role.role_id==1">
+								<a ui-sref="main.suppliertype"> 
+									<i class="fa fa-users" aria-hidden="true"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>SUPPLIER TYPE
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-hide="expand" ng-if="vm.user.role.role_id==1">
+								<a ui-sref="main.supplier"> 
+									<i class="fa fa-users" aria-hidden="true"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>SUPPLIER MASTER
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-hide="expand" ng-if="vm.user.role.role_id==1">
+								<a ui-sref="main.performance"> 
+									<i class="fa fa-line-chart" aria-hidden="true"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>PERFORMANCE CRITERIA 
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-hide="expand" ng-if="vm.user.role.role_id==2  || vm.user.role.role_id==3  || vm.user.role.role_id==4">
+								<a ui-sref="main.performance2"> 
+									<i class="fa fa-line-chart" aria-hidden="true"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>PERFORMANCE CRITERIA
+								</a>
+							</li>
+							
+							
+							<li ui-sref-active="active" ng-click="transactions = !transactions; expand = 1; reports = 0;">
+								<a ui-sref="">
+									<i class="fa fa-exchange"></i> 
+									<span>TRANSACTIONS</span>
+									<span class="fa fa-caret-down" style="float: right; padding-top: 5px"></span>
+								</a>
+							</li>
+						 <li ui-sref-active="active" ng-show="transactions" >
+								<a ui-sref="main.otd"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>OTD
+								</a>
+							 </li> 
+							<!--<li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==3 || vm.user.role.role_id==4">
+								<a ui-sref="main.otd2"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>OTD
+								</a>
+							</li> -->
+						 <li ui-sref-active="active" ng-show="transactions">
+								<a ui-sref="main.fpy"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>FPY
+								</a>
+							</li> 
+							<!-- <li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==2 || vm.user.role.role_id==4">
+								<a ui-sref="main.fpy2"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>FPY
+								</a>
+							</li>  -->
+						 <li ui-sref-active="active" ng-show="transactions" >
+								<a ui-sref="main.ppm"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>PPM
+								</a>
+							</li>
+							 <!-- <li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==2 || vm.user.role.role_id==4">
+								<a ui-sref="main.ppm2"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>PPM
+								</a>
+							</li> -->
+						 <li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3">
+								<a ui-sref="main.supplierstatus"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>SUPPLIER STATUS
+								</a>
+							</li>
+							
+							
+							 <li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3">
+								<a ui-sref="main.report"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>Escalation Supplier list
+								</a>
+							</li>
+							 <li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3">
+								<a ui-sref="main.escalation"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>Escalation
+								</a>
+							</li>
+								<!--<li ui-sref-active="active" ng-show="transactions" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 ">
+								<a ui-sref="main.sale"> 
+									<i class="fa fa-diamond"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>sale
+								</a>
+							</li> -->
+							
+							
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 1;">
+								<a ui-sref=""> 
+									<i class="fa fa-file-text-o"></i> 
+									<span>REPORTS</span>
+									<span class="fa fa-caret-down" style="float: right; padding-top: 5px"></span>
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-show="reports" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3  ">
+								<a ui-sref="main.vendorPerformance"> 
+									<i class="fa fa-folder-open"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>Vendor Performance
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-show="reports" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3  || vm.user.role.role_id==4  ">
+								<a ui-sref="main.highPerformance"> 
+									<i class="fa fa-folder-open"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>high Performance
+								</a>
+							</li>
+							<li ui-sref-active="active" ng-show="reports" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3  || vm.user.role.role_id==4 ">
+								<a ui-sref="main.lowPerformance"> 
+									<i class="fa fa-folder-open"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>Low Performance
+								</a>
+							</li>
+							
+							<li ui-sref-active="active" ng-show="reports" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 || vm.user.role.role_id==3  ">
+								<a ui-sref="main.report2"> 
+									<i class="fa fa-folder-open"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span> Supplier Performance 
+								</a>
+							</li>
+							
+							
+							<!-- 
+							<li ui-sref-active="active" ng-show="reports" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 ">
+								<a ui-sref="main.sendsms"> 
+									<i class="fa fa-folder-open"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>Send SMS
+								</a>
+							</li> -->
+							
+							<!-- 
+							<li ui-sref-active="active" ng-show="reports" ng-if="vm.user.role.role_id==1 || vm.user.role.role_id==2 ">
+								<a ui-sref="main.report"> 
+									<i class="fa fa-folder-open"></i>
+									<span class="" style="float: left; padding-top: 5px; padding-left: 10%;"></span>Escalation
+								</a>
+							</li> -->
+							<li ui-sref-active="active" ng-click="expand = 1 ; transactions = 0; reports = 0;">
+								<a ui-sref="main.sendsms"> <i class="fa fa-comments"> </i> <span>Send SMS</span></a>
+							</li>
+							
+							<li ui-sref-active="active">
+								<a ng-click="vm.doLogout()">
+									<i class="fa fa-sign-out"></i> 
+									<span>Logout</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div ui-view="sub"></div>
+		</div>
+	</div>
+</div>

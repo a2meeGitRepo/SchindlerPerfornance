@@ -1,0 +1,203 @@
+<html>
+<head>
+<script src="templates/performance/word/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="templates/performance/word/FileSaver.js"></script>
+<script src="templates/performance/word/jquery.wordexport.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$("a.word-export").click(function(event) {
+			$("#page-content").wordExport();
+		});
+	});
+</script>
+
+</head>
+<body>
+	<div class="modal-header 1">
+		<!--<h3 class="modal-title" id="modal-title">VIEW</h3> -->
+		<button type="button" class="btn btn-info">
+			<a class="word-export" href="javascript:void(0)" style="color: #fff;">
+				<i class="fa fa-file-word-o" aria-hidden="true"></i> Export as .doc
+			</a>
+		</button>
+		<button class="btn btn-danger" type="button" ng-click="vm.cancel()">
+			<i class="fa fa-times" aria-hidden="true"></i>Close
+		</button>
+	</div>
+	<div class="modal-body" id="page-content" data-ng-init="onloadFun()">
+		<div style="margin: 0 auto;">
+			<p style="text-align: right;">
+				<img id="a_img" src="templates/performance/word/adssss.png"
+					style="width: 60px;">
+			</p>
+			<p>Dear ,</p>
+			<p style="margin-top: 3%;">At the outset we thank you for
+				choosing Schindler India as your business partner and also
+				appreciate your continual support which makes us one of the leading
+				elevator & escalator company in India.</p>
+			<p style="margin-top: 2%;">Timely delivery of well designed
+				quality products with superior customer experience through out
+				elevator & escalator life cycle make us stand apart from our
+				competitors. We take On Time delivery and quality of product
+				delivered very seriously and therefore Schindler India is one of the
+				fastest elevator delivery companies in the world with lowest rate of
+				quality issues. We strongly believe that our suppliers' performance
+				for On Time delivery and PPM/FPY contributes heavily towards our
+				success in the market. Needless to mention, customer expectations
+				keeps on increasing on these two fronts and so is our expectation
+				from you.</p>
+			<p style="margin-top: 2%">We assume you are with us in our
+				journey towards excellence in elevator and escalator market in terms
+				of customer satisfaction and so look for your support.</p>
+			<p style="margin-top: 2%">In view of the above, we would like to
+				share following important information with you in attached sheet.</p>
+			<p>Your performance for the year</p>
+			<p>Targets sheet for &nbsp;&nbsp;&nbsp; to delight our customers</p>
+			<p style="margin-top: 2%;">
+				And your Performance for the year &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; was
+				rated as <strong>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</strong>
+			</p>
+			<p style="margin-top: 2%;">We seek your confirmation for the
+				&nbsp;&nbsp;&nbsp; target and look for having signed copy of target
+				sheet latest by</p>
+			<p style="margin-top: 2%;">We once again thank you for being our
+				supply partner and supporting us in our ambitious journey. In case
+				of any query, please feel free to contact undersigned.</p>
+			<p style="margin-top: 2%">In case of any query, please feel free
+				to contact undersigned.</p>
+			<p style="margin-top: 1%;">Best Regards</p>
+			<p style="margin-top: 3%">
+				Ritesh Bhole<br /> <br /> <br /> ritesh.bhole@schindler.com<br />
+				+91 75 07 08 82 23<br /> SDI- India<br />
+			</p>
+		</div>
+
+		<div style="margin: 0 auto; margin-top: 2%;">
+			<h3 style="text-align: center; text-decoration: underline;">Key
+				Performance Target Sheet</h3>
+			<p style="margin-top: 4%;">
+				<span style="font-size: 18px; font-weight: bolder;">Supplier
+					:</span> <span
+					style="padding: 8px 15%; text-align: center; width: 60%; border: 2px solid #000;">SAVERA
+					INDIA RIDING SYSTEM</span>
+			</p>
+			<p style="margin-top: 2%">The accepted level of performance of
+				each Key Performance Target are as follows:</p>
+			<p style="margin-top: 2%">Please note, KPI indicators are
+				calculated in particular per supply relationship; supplier address
+				to shipping address of Schindler customer.</p>
+			<p style="margin-top: 2%">
+				<span style="font-size: 16px; font-weight: bolder;">Valid as
+					of :</span> <br>
+			</p>
+			<p style="margin-top: 1%">
+				<span style="font-size: 16px; font-weight: bolder;">Supply
+					Factory : INP_OCC</span>
+			</p>
+			<div>
+				<table
+					style="border-collapse: collapse; margin-top: 3%; width: 100%;">
+					<thead>
+						<tr>
+							<th style="border: 1px solid;">Indicator</th>
+							<th style="border: 1px solid;" colspan="2">On Time Delivery<br>(OTD)
+							</th>
+							<th style="border: 1px solid;" colspan="2">First Pass Yield<br>(FPY)
+							</th>
+							<th style="border: 1px solid;" colspan="2">Non-Conformities<br>(PPM)
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border: 1px solid;">Schindler Order <br>
+								Entity
+							</td>
+							<td style="border: 1px solid;">Achievement<br>(previous
+								period)
+							</td>
+							<td style="border: 1px solid;">Target<br>(current
+								period)
+							</td>
+							<td style="border: 1px solid;">Achievement<br>(previous
+								period)
+							</td>
+							<td style="border: 1px solid;">Target<br>(current
+								period)
+							</td>
+							<td style="border: 1px solid;">Achievement<br>(previous
+								period)
+							</td>
+							<td style="border: 1px solid;">Target<br>(current
+								period)
+							</td>
+						</tr>
+						<tr>
+							<td style="border: 1px solid;">INP_OCC</td>
+							<td style="border: 1px solid;">{{otdytd}}%</td>
+							<td style="border: 1px solid;">{{vm.items.performance_otd}}</td>
+							<td style="border: 1px solid;">{{fpyytd}}%</td>
+							<td style="border: 1px solid;">{{vm.items.performance_fpy}}</td>
+							<td style="border: 1px solid;">{{ppmytd}}</td>
+							<td style="border: 1px solid;">{{vm.items.performance_ppm}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<p style="text-align: center;">*Performance mentioned above is
+				considered till</p>
+
+			<br>
+			<table border="0" style="width: 100%">
+				<tr>
+					<td style="font-weight: bolder;">Component specific targets:</td>
+					<td>Product Groups</td>
+					<td>BG100 Drive mechanical</td>
+					<td>________________</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>BG200 Electrical</td>
+					<td>________________</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>BG300 Mechanical</td>
+					<td>________________</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>BG400 Door</td>
+					<td>________________</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>BG500 Car</td>
+					<td>________________</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>BG600 Counter Weight</td>
+					<td>________________</td>
+				</tr>
+				<tr>
+					<td style="font-weight: bolder;"><br> <br>Signature
+						Supplier:________________</td>
+				</tr>
+				<tr>
+					<td>Schindler India pvt ltd</td>
+					<td>Supplier Target sheet</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

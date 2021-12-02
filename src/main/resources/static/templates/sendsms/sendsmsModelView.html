@@ -1,0 +1,197 @@
+<link rel="stylesheet" href="templates/sale/assets/css/reset.min.css">
+<link rel='stylesheet prefetch'
+	href="templates/sale/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="templates/sale/assets/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="templates/sale/assets/css/style_css.css">
+<script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
+<head>
+<style>
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<div class="modal-body" data-ng-init="onloadFun()">
+	<div class="row title hidden-print">
+		<div class="col-sm-12 text-right">
+			<input type="button" ng-value="nik" class="btn btn-info"
+				id="exportForm" style="display: none;">
+			</button>
+		</div>
+	</div>
+	<div id="pdf">
+		<div>
+			<form class="form-horizontal" style="font-family: Raleway;">
+				<div class="form-group" style="PADDING: 15PX;    border: 18px solid #94909057;">
+				<div class="col-sm-12" style="MARGIN-BOTTOM: 2%;color: white;">sdfdffd</div>
+					<div class="col-sm-12 text-center img_id">
+						<img id="a_img" src="templates/sale/assets/img/logd.jpg">
+					</div>
+					<div class="col-sm-12" style="top: -17px;">
+						<div class="col-sm-10">
+							<span style="float: right;">Date:-</span>
+						</div>
+						<div class="col-sm-2" style="padding: 0px;">{{cd}}</div>
+					</div>
+					<div class="col-sm-12  text-center" id="order_title"
+						style="FONT-WEIGHT: bold; FONT-SIZE: 25PX;font-family: Raleway;">
+						<span> ORDER CONFIRMATION</span>
+					</div>
+					<div class="col-sm-12" style="MARGIN-TOP: 10%; MARGIN-BOTTOM: 15PX;">
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Job Number:-</span>
+							</div>
+							<div class="col-sm-7 " style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.sale_no}}</span>
+							</div>
+						</div>
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Pull Date:-</span>
+							</div>
+							<div class="col-sm-8" style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.disaptch_date}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12" style="MARGIN-BOTTOM: 15PX;">
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Project Name:-</span>
+							</div>
+							<div class="col-sm-7 " style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.contract}}</span>
+							</div>
+						</div>
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Sales Office:-</span>
+							</div>
+							<div class="col-sm-8" style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.office_code}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12" style="MARGIN-BOTTOM: 15PX;">
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>ACP Name:-</span>
+							</div>
+							<div class="col-sm-7 " style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.acp}}</span>
+							</div>
+						</div>
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>OCC Location:-</span>
+							</div>
+							<div class="col-sm-8" style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.plant}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12" style="MARGIN-BOTTOM: 15PX;">
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>NIP Name:-</span>
+							</div>
+							<div class="col-sm-7 " style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.nip}}</span>
+							</div>
+						</div>
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Scar Days:-</span>
+							</div>
+							<div class="col-sm-8" style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.scar_days}}</span>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12" style="MARGIN-BOTTOM: 15PX;">
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Branch Location:-</span>
+							</div>
+							<div class="col-sm-7 " style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.sales_offce}}</span>
+
+							</div>
+						</div>
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-4" style="padding: 0px;">
+								<span>Product Line:-</span>
+							</div>
+							<div class="col-sm-8" style="padding: 0px;">
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.product_line}}</span>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12" style="MARGIN-BOTTOM: 2%; MARGIN-TOP: 5%;">
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-6 dispatch_date" id="site_address"
+								style="padding: 0px;">Ex OCC Std Material Dispatch Date</div>
+							<div class="col-sm-6" >
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.sch_date}}</span>
+							</div>
+						</div>
+						<div class="col-sm-6" style="padding: 0px;">
+							<div class="col-sm-6 dispatch_date" id="site_address"
+								style="padding: 0px;">Ex OCC Non Std Material Dispatch
+								Date</div>
+							<div class="col-sm-6" >
+								<span style="-webkit-border-after: 1px solid;">{{vm.items.scar_date}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 site_class" id="site_address"
+						style="MARGIN-TOP: 5%; PADDING: 2%;">
+						<center>Site/Delivery Address :-</center>
+					</div>
+					<div class="col-sm-12" style="text-align: center;    margin-top: 2%;">
+						<span  >{{vm.items.site_address}}</span>
+						
+					</div>
+					<div class="col-sm-12" style="margin-top: 8%;text-align: center;">
+						<span>Note:-  Ensure site readiness before Ex.OCC
+							Std material dispatch date.</span>
+					</div>
+					<div class="col-sm-12" style="BACKGROUND: #db0000; MARGIN-TOP: 6%;">
+						<div class="col-sm-6" id="order_title"
+							style="border-right: 1px solid #fff;">
+							<span> Office Address:- </span> <br /> <span> Schindler
+								India Pvt.Ltd. Plot no-D234 Near Warale Vilage, Chaken MIDC
+								Phase-2 Pune-410501 </span>
+						</div>
+						<div class="col-sm-6" id="order_title">
+							<span> Thanks for your order,For any Query Assistance
+								please contact logistic Co-ordinatior </span>
+						</div>
+					</div>
+					<div class="col-sm-12" style="color: white;">sdfdffd</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- <div class="modal-footer">
+<button type="button" class="btn btn-success" onclick="javascript:printDiv('printablediv')" id="printBtn" ng-click="vm.cancel()"  style="FLOAT: RIGHT; margin-top: 15px;">Print</button>
+	<button class="btn btn-danger" type="button" ng-click="vm.cancel()"><i class="fa fa-times"></i>Close</button>
+</div> -->
+
+
+
+<script src="templates/sale/assets/js/jquery.min.js"></script>
+<script src="templates/sale/assets/js/bootstrap.min.js"></script>
+<script src="templates/sale/assets/js/jspdf.min.js"></script>
+<script src="templates/sale/assets/js/html2canvas.min.js"></script>
+<script src="templates/sale/assets/js/index.js"></script>

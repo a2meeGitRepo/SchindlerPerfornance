@@ -1,0 +1,174 @@
+<link rel="stylesheet" href="templates/views/css/style.css">
+<link rel="stylesheet" href="css/loader.css">
+<div class="showload" ng-show="showLoader"><div id="loaderAi" ></div></div>
+
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+			<h2 class="title">PPM</h2>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-right: 0px;"><h5 class="title" style="text-align: right;">KW</h5></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<input type="text" ng-model="ppm2.ppm2_kw" class="form-control title" ng-change="enable()"
+				onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+				required>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-right: 0px;"><h5 class="title" style="text-align: right;">OCC</h5></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<input type="text" ng-model="ppm2.ppm2_occ" class="form-control title" ng-change="enable()"
+				onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+				required>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+			<button id="submitBtn" class=" btn btn-success title"
+				ng-click="vm.addPpm2(ppm2)" ng-disabled="isDisabled2">SUBMIT</button>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER NAME :</label> <select
+								class="form-control" ng-model="ppm.ppm_suppliername" name=""
+								ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers"
+								required>
+								<option value="">SELECT SUPPLIER NAME</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-2 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER TYPE :</label> <select
+								class="form-control" ng-model="ppm.ppm_supplierType" name=""
+								ng-options="supplier.suppliertype_type  as supplier.suppliertype_type for supplier in vm.supptypes"
+								required>
+								<option value="">SELECT SUPPLIER TYPE</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">PPM :</label> <select class="form-control"
+								ng-model="ppm.ppm_ytd" name=""
+								ng-options="ppm.ppm_ytd as ppm.ppm_ytd for ppm in vm.ppms"
+								required>
+								<option value="">SELECT PPM</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">YEAR :</label><select class="form-control"
+								ng-model="ppm.ppm_year" name=""
+								ng-options="ppm.name as ppm.name for ppm in sup" required>
+								<option value="">SELECT YEAR</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-1 col-xs-12">
+						<div class="form-group" style="position: absolute; top: 20px;">
+							<button class="btn btn-info " ng-click="vm.search(ppm)">
+								<i class="fa fa-search"></i>Search
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-xs-12" ng-show="vm.user.role.role_id==2|| vm.user.role.role_id==1">
+					<div class="col-md-4 col-xs-12">
+						<label style="float: right">Import PPM(.xls) File</label>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<input type="file" id="fileAsset" file-model="myFile"
+							onchange="angular.element(this).scope().enable()"
+							class="form-control" ng-required="true" /> <a
+							popover-placement="left" uib-popover="Add new entry from here.."
+							popover-trigger="'mouseenter'" class="icon"> </a>
+					</div>
+					<div class="col-md-1 col-xs-1">
+						<button type="button" id="import" class="btn btn-info"
+							ng-click-options="{preventDoubleClick: true}"
+							ng-dblclick="$event.stopPropagation();"
+							ng-click="vm.uploadXlxs()" ng-disabled="isDisabled">
+							<i class="fa fa-download" aria-hidden="true"></i>IMPORT
+						</button>
+					</div>
+					<div class="col-md-2 col-xs-2">
+						<button type="button" class="btn btn-info"
+							ng-click="vm.add()">
+							<i class="fa fa-plus" aria-hidden="true"></i>ADD PPM
+						</button>
+					</div>
+				</div>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>JAN</th>
+								<th>FEB</th>
+								<th>MAR</th>
+								<th>APR</th>
+								<th>MAY</th>
+								<th>JUNE</th>
+								<th>JULY</th>
+								<th>AUG</th>
+								<th>SEP</th>
+								<th>OCT</th>
+								<th>NOV</th>
+								<th>DEC</th>
+								<th>YTD</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="ppm in vm.ppms">
+								<td>{{$index+1}}</td>
+								<td>{{ppm.ppm_suppliercode}}</td>
+								<td nowrap>{{ppm.ppm_suppliername}}</td>
+								<td>{{ppm.ppm_supplierType}}</td>
+								<td>{{ppm.ppm_year}}</td>
+								<td ng-class="myDynamicClass[{{$index}}]">{{ppm.ppm_jan}}</td>
+								<td ng-class="febClass[{{$index}}]">{{ppm.ppm_feb}}</td>
+								<td ng-class="marClass[{{$index}}]">{{ppm.ppm_mar}}</td>
+								<td ng-class="aprClass[{{$index}}]">{{ppm.ppm_apr}}</td>
+								<td ng-class="mayClass[{{$index}}]">{{ppm.ppm_may}}</td>
+								<td ng-class="juneClass[{{$index}}]">{{ppm.ppm_june}}</td>
+								<td ng-class="julyClass[{{$index}}]">{{ppm.ppm_july}}</td>
+								<td ng-class="augClass[{{$index}}]">{{ppm.ppm_aug}}</td>
+								<td ng-class="sepClass[{{$index}}]">{{ppm.ppm_sep}}</td>
+								<td ng-class="octClass[{{$index}}]">{{ppm.ppm_oct}}</td>
+								<td ng-class="novClass[{{$index}}]">{{ppm.ppm_nov}}</td>
+								<td ng-class="decClass[{{$index}}]">{{ppm.ppm_dec}}</td>
+								<td ng-class="ytdClass[{{$index}}]">{{ppm.ppm_ytd}}</td>
+								<td nowrap>
+									<button type="button" class="btn btn-info"
+										ng-click="vm.view(ppm)">
+										<i class="fa fa-eye" aria-hidden="true"></i>VIEW
+									</button>
+									<button type="button" class="btn btn-success"
+										ng-click="vm.add(ppm)" ng-if= "vm.user.role.role_id==2|| vm.user.role.role_id==1">
+										<i class="fa fa-edit" aria-hidden="true"></i>EDIT
+									</button>
+									<button type="button" class="btn btn-danger"
+										ng-click="vm.delet(ppm)" ng-if= "vm.user.role.role_id==2|| vm.user.role.role_id==1">
+										<i class="fa fa-trash" aria-hidden="true"></i>DELETE
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

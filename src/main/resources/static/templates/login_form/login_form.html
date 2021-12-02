@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Form</title>
+<link rel="stylesheet" href="templates/login_form/css/style.css">
+<link rel="stylesheet" href="templates/login_form/css/bootstrap.min.css" />
+<script src="templates/login_form/js/index.js"></script>
+</head>
+
+<body>
+	<div id="login" class="login">
+		<form method="post">
+			<div class="row">
+				<div class="col-sm-12 ">
+					<div style="margin-left: 25%;">
+						<div class="col-sm-8  loginbox2">
+							<div class="row loginbox" style="margin-left: 5px; margin-right: 5px;">
+								<div class="col-sm-6">
+									<img src="templates/login_form/img/logo.png" alt="Smiley face" class="mainlogo">
+								</div>
+								<div class="col-sm-6" style="margin-top: 7%;">
+									<div class="input_field">
+										<input type="text" class="itype" data-ng-model="login.mobile_no" Placeholder="Enter User Code" required> 
+										<br/> 
+										<input type="password" class="itype" data-ng-model="login.password" Placeholder="Enter Password" required>
+									</div>
+									<div class="btn1">
+										<button class="button" name="submit" type="submit" value="Sign In" data-ng-click="vm.doLogin(login)">Submit</button>
+									</div>
+									<div>
+										<span style="width: 48%; text-align: left; display: inline-block; color: white;">
+											<span id="forgotp">Forgot password?</span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<br />
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="forgot" class="login ">
+		<form action="javascript:void(0);" method="get">
+			<div class="row">
+				<div class="col-sm-12 ">
+					<div style="margin-left: 25%;">
+						<div class="col-sm-8  loginbox2">
+							<div class="row loginbox" style="margin-left: 5px; margin-right: 5px;">
+								<div class="col-sm-6">
+									<img src="templates/login_form/img/logo.png" alt="Smiley face" class="mainlogo">
+								</div>
+								<div class="col-sm-6" style="margin-top: 7%;">
+									<div class="input_field">
+										<input type="text" class="itype" data-ng-model="forget.email" Placeholder="Enter Email Id" required> <br />
+									</div>
+									<div class="btn1">
+										<button class="button" name="submit" type="submit" value="Sign In" data-ng-click="vm.sendMail(forget)">Send</button>
+									</div>
+									<div>
+										<span style="width: 48%; text-align: left; display: inline-block; color: white;">
+											<span id="loginp">Go Back...!</span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<br />
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<footer class="footer text-center" style="font-size: 13px;">
+		<i class="fa fa-copyright"></i> 2018 SCHINDLER. All rights reserved |
+		Design & Developed by<strong><a href="http://a2mee.com/">A2mee</a></strong>
+	</footer>
+</body>
+</html>

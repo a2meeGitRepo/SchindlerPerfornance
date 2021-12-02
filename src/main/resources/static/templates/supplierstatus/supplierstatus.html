@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="css/loader.css">
+<div class="showload" ng-show="showLoader"><div id="loaderAi" ></div></div>
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">SUPPLIER STATUS</h2>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER NAME :</label> <select
+								class="form-control"
+								ng-model="supplierstatus.supplierstatus_suppliername" name=""
+								ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers"
+								required>
+								<option value="">SELECT SUPPLIER NAME</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER TYPE :</label> <select
+								class="form-control"
+								ng-model="supplierstatus.supplierstatus_suppliertype" name=""
+								ng-options="supplier.suppliertype_type  as supplier.suppliertype_type for supplier in vm.supptypes"
+								required>
+								<option value="">SELECT SUPPLIER TYPE</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">OTD :</label> <select class="form-control"
+								ng-model="supplierstatus.supplierstatus_otd" name=""
+								ng-options="supplierstatus.supplierstatus_otd as supplierstatus.supplierstatus_otd for supplierstatus in vm.supplierstatuss"
+								required>
+								<option value="">SELECT OTD</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">FPY :</label> <select class="form-control"
+								ng-model="supplierstatus.supplierstatus_fpy" name=""
+								ng-options="supplierstatus.supplierstatus_fpy as supplierstatus.supplierstatus_fpy for supplierstatus in vm.supplierstatuss"
+								required>
+								<option value="">SELECT FPY</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">PPM :</label> <select class="form-control"
+								ng-model="supplierstatus.supplierstatus_ppm" name=""
+								ng-options="supplierstatus.supplierstatus_ppm as supplierstatus.supplierstatus_ppm for supplierstatus in vm.supplierstatuss"
+								required>
+								<option value="">SELECT PPM</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">YEAR :</label> <select
+								ng-model="supplierstatus.supplierstatus_year"
+								ng-options="supplierstatus.supplierstatus_year as supplierstatus.supplierstatus_year for supplierstatus in vm.supplierstatuss|unique:'supplierstatus_year'"
+								class="form-control">
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-md-1 col-xs-12">
+						<div class="form-group" style="position: absolute; top: 20px;">
+							<button class="btn btn-info "
+								ng-click="vm.search(supplierstatus)">
+								<i class="fa fa-search"></i>Search
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-4 col-xs-12">
+						<label style="float: right">Import SUPPLIER STATUS(.xls) File</label>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<input type="file" id="fileAsset" file-model="myFile"
+							onchange="angular.element(this).scope().enable()"
+							class="form-control" ng-required="true" /> <a
+							popover-placement="left" uib-popover="Add new entry from here.."
+							popover-trigger="'mouseenter'" class="icon"> </a>
+					</div>
+					<div class="col-md-1 col-xs-12">
+						<button type="button" id="import" class="btn btn-info"
+							ng-click-options="{preventDoubleClick: true}"
+							ng-dblclick="$event.stopPropagation();"
+							ng-click="vm.uploadXlxs()" ng-disabled="isDisabled">
+							<i class="fa fa-download" aria-hidden="true"></i>IMPORT
+						</button>
+					</div>
+				</div>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>OTD</th>
+								<th>FPY</th>
+								<th>PPM</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="supplierstatus in vm.supplierstatuss">
+								<td>{{$index+1}}</td>
+								<td>{{supplierstatus.supplierstatus_suppliercode}}</td>
+								<td>{{supplierstatus.supplierstatus_suppliername}}</td>
+								<td>{{supplierstatus.supplierstatus_suppliertype}}</td>
+								<td>{{supplierstatus.supplierstatus_year}}</td>
+								<td>{{supplierstatus.supplierstatus_otd}}%</td>
+								<td>{{supplierstatus.supplierstatus_fpy}}%</td>
+								<td>{{supplierstatus.supplierstatus_ppm}}</td>
+								<td nowrap>
+									<button type="button" class="btn btn-info"
+										ng-click="vm.view(supplierstatus)">
+										<i class="fa fa-eye" aria-hidden="true"></i>VIEW
+									</button>
+									<button type="button" class="btn btn-success"
+										ng-click="vm.add(supplierstatus)">
+										<i class="fa fa-edit" aria-hidden="true"></i>EDIT
+									</button>
+									<button type="button" class="btn btn-danger"
+										ng-click="vm.delet(supplierstatus)">
+										<i class="fa fa-trash" aria-hidden="true"></i>DELETE
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

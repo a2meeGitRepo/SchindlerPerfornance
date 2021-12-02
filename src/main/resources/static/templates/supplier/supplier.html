@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="css/loader.css">
+<div class="showload" ng-show="showLoader"><div id="loaderAi" ></div></div>
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">SUPPLIER</h2>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="row">
+					<div class="col-md-12 col-xs-12">
+						<!-- /*--------------------unique serch data---------------------*/ -->
+						<div class="col-md-3 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">SUPPLIER NAME :</label> <select
+									class="form-control" ng-model="supplier.supplier_name" name=""
+									ng-options="supplier.name as supplier.name for supplier in sup"
+									required>
+									<option value="">SELECT SUPPLIER NAME</option>
+								</select>
+							</div>
+						</div>
+						<!-- /*--------------------unique serch data---------------------*/ -->
+						<div class="col-md-2 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">SUPPLIER TYPE :</label> <select
+									class="form-control" ng-model="supplier.supplier_type" name=""
+									ng-options="supplier.suppliertype_type  as supplier.suppliertype_type for supplier in vm.supptypes"
+									required>
+									<option value="">SELECT SUPPLIER TYPE</option>
+								</select>
+							</div>
+						</div>
+						<!-- <div class="col-md-3 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">SUPPLIER ADDRESS :</label> <select
+									class="form-control" ng-model="supplier.supplier_address"
+									name=""
+									ng-options="supplier.supplier_address as supplier.supplier_address for supplier in vm.suppliers"
+									required>
+									<option value="">SELECT SUPPLIER ADDRESS</option>
+								</select>
+							</div>
+						</div> -->
+						<div class="col-md-3 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">SUPPLIER REGION :</label> <select
+									class="form-control" ng-model="supplier.supplier_region"
+									required>
+									<option value="">ALL</option>
+									<option value="import">IMPORT</option>
+									<option value="local">LOCAL</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-1 col-xs-12">
+							<div class="form-group" style="position: absolute; top: 20px;">
+								<button class="btn btn-info " ng-click="vm.search(supplier)">
+									<i class="fa fa-search"></i>Search
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-4 col-xs-12">
+						<label style="float: right">Import SUPPLIER(.xls) File</label>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<input type="file" id="fileAsset" file-model="myFile"
+							onchange="angular.element(this).scope().enable()"
+							class="form-control" ng-required="true" /> <a
+							popover-placement="left" uib-popover="Add new entry from here.."
+							popover-trigger="'mouseenter'" class="icon"> </a>
+					</div>
+					<div class="col-md-1 col-xs-1">
+						<button type="button" id="import" class="btn btn-info"
+							ng-click-options="{preventDoubleClick: true}"
+							ng-dblclick="$event.stopPropagation();"
+							ng-click="vm.uploadXlxs()" ng-disabled="isDisabled">
+							<i class="fa fa-download" aria-hidden="true"></i>IMPORT
+						</button>
+					</div>
+					<div class="col-md-2 col-xs-2">
+					<div class="title">
+				<a popover-placement="left" uib-popover="Add new entry from here.."
+					popover-trigger="'mouseenter'" class="icon" ng-click="vm.add()">
+						<button type="button" class="btn btn-info"
+							ng-click="vm.add()">
+							<i class="fa fa-plus" aria-hidden="true"></i>ADD SUPPLIER
+						</button>
+						</a>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>CONTACT PERSON</th>
+								<th>EMAIL</th>
+								<th>MOBILE NO</th>
+								<th>ADDRESS</th>
+								<th>SUPPLIER REGION</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="supplier in vm.suppliers | filter : search">
+								<td>{{$index+1}}</td>
+								<td>{{supplier.supplier_code}}</td>
+								<td>{{supplier.supplier_name}}</td>
+								<td>{{supplier.supplier_type}}</td>
+								<td>{{supplier.supplier_contactperson}}</td>
+								<td>{{supplier.supplier_email}}</td>
+								<td>{{supplier.supplier_mobile}}</td>
+								<td>{{supplier.supplier_address}}</td>
+								<td>{{supplier.supplier_region}}</td>
+								<td nowrap>
+									<button type="button" class="btn btn-info"
+										ng-click="vm.view(supplier)">
+										<i class="fa fa-eye" aria-hidden="true"></i>VIEW
+									</button>
+									<button type="button" class="btn btn-success"
+										ng-click="vm.add(supplier)">
+										<i class="fa fa-edit" aria-hidden="true"></i>EDIT
+									</button>
+									<button type="button" class="btn btn-danger"
+										ng-click="vm.delet(supplier)">
+										<i class="fa fa-trash" aria-hidden="true"></i>DELETE
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

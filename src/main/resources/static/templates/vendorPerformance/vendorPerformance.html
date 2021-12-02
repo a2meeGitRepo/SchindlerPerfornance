@@ -1,0 +1,377 @@
+<head>
+<link rel="stylesheet" type="text/css" href="Print.css" />
+<link rel="stylesheet" type="text/css" href="printStyle.css" />
+<script type="text/javascript" src="js/jspdf.debug.js"></script>
+<link rel="stylesheet" href="templates/views/css/style.css">
+<script type="text/javascript"
+	src="templates/vendorPerformance/kendo/highcharts.js"></script>
+	<style>
+td {
+max-width:50px;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+	</style>
+</head>
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<h2 class="title">SUPPLIER PERFORMANCE REPORT</h2>
+		</div>
+	</div>
+</div>
+
+<div class="container-widget"
+	ng-controller="VendorPerformanceController">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-title">
+					<div class="row">
+						<div class="col-md-12 col-xs-12" ng-show="vm.searchHide">
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">SUPPLIER CODE * </label> <select
+										class="form-control" ng-model="otd.otd_suppliercode"
+										ng-change="enable();setName()" required
+										ng-options="supplier.supplier_code as supplier.supplier_code for supplier in vm.suppliers|unique:'supplier_code'">
+										<option value="">SELECT SUPPLIER CODE</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">SUPPLIER NAME * </label> <select
+										class="form-control" ng-model="otd.otd_suppliername"
+										ng-change="enable();setCode()"
+										ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers|unique:'supplier_code'"
+										required>
+										<option value="">SELECT SUPPLIER NAME</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">SUPPLIER TYPE * </label> <select
+										class="form-control" ng-model="otd.otd_suppliertype"
+										ng-change="enable()" required
+										ng-options="suppliertype.suppliertype_type  as suppliertype.suppliertype_type for suppliertype in vm.suppliertypes">
+										<option value="">SELECT SUPPLIER TYPE</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">YEAR * </label> <input type="text"
+										ng-pattern="/^(\d)+$/" ng-change="enable()" maxlength="4"
+										onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57))"
+										ng-model="otd.year" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 col-xs-12">
+							<!-- vm.getGraphs() -->
+							<div class="col-md-1 col-xs-12" ng-show="vm.searchHide">
+								<div class="form-group">
+									<button class="btn btn-info " ng-click="vm.vendorPefo(otd);"
+										ng-disabled="isDisabled"
+										style="box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);">
+										<i class="fa fa-search"></i>Search
+									</button>
+								</div>
+							</div>
+							<div class="col-md-1 col-xs-12"  ng-show="vm.buttonHide">
+								<div class="form-group">
+									<button type="button" class="btn btn-success"
+										data-dismiss="modal" ng-click="download(otd)"
+										style="box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);">
+										<i class="fa fa-envelope" aria-hidden="true"></i>Send
+									</button>
+								</div>
+							</div>
+							<div class="col-md-2 col-xs-12" style="text-align: center;" ng-show="vm.buttonHide">
+								<div class="form-group">
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal" ng-click="download1(otd)"
+										style="box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);">
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>Download
+									</button>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12" ng-show="vm.buttonHidenew">
+								<div class="form-group">
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal" ng-click="newSupplier(otd)"
+										style="box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);">
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>NEW
+										SUPLLIER REPORT
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row" ng-show="fpy">
+		<div class="col-md-12">
+			<div id="pdf">
+				<div class="panel panel-default">
+					<div style="border: 1px solid black;">
+						<div class="col-md-12 col-xs-12"
+							style="border-bottom: 1px solid black; background: gray; color: white; text-align: center; font-size: 24px; padding: 15px; FONT-WEIGHT: bolder;">
+							<span>Supplier Performance Report & Target Agreement</span><br>
+							<span style="font-size: 17px;">{{otd.otd_suppliername}}</span>
+						</div>
+						<div class="col-md-12 col-xs-12" ng-show="vm.fpytable"
+							style="text-align: center; font-size: 17px; padding: 10px;">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								ON TIME DELIVERY <i class="fa fa-long-arrow-up"
+									aria-hidden="true"
+									style="font-size: 30px; color: grey; padding: 5px;"></i>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								FIRST PASS YIELD <i class="fa fa-long-arrow-up"
+									aria-hidden="true"
+									style="font-size: 30px; color: grey; padding: 5px;"></i>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								PPM <i class="fa fa-long-arrow-down" aria-hidden="true"
+									style="font-size: 30px; color: grey; padding: 5px;"></i>
+							</div>
+						</div>
+
+						<!-- ----------------------- fpy kw not available---------------------------- -->
+						<div class="col-md-12 col-xs-12" ng-show="vm.fpyhidden"
+							style="text-align: center; font-size: 17px; padding: 10px;">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								ON TIME DELIVERY <i class="fa fa-long-arrow-up"
+									aria-hidden="true"
+									style="font-size: 30px; color: grey; padding: 5px;"></i>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								PPM <i class="fa fa-long-arrow-down" aria-hidden="true"
+									style="font-size: 30px; color: grey; padding: 5px;"></i>
+							</div>
+						</div>
+						<div class="col-md-12 col-xs-12" ng-show="vm.fpyhidden">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div style="border: 1px solid;">
+									<!-- <canvas id="speedChart1"></canvas> -->
+									<div id="newDiv4"></div>
+									<div id="container4" style="display: none; padding-right: 2%;"></div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div style="border: 1px solid;">
+									<!-- <canvas id="speedChart2"></canvas> -->
+									<div id="newDiv5"></div>
+									<div id="container5" style="display: none; padding-right: 2%;"></div>
+								</div>
+							</div>
+						</div>
+						<!-- ----------------------- fpy kw not available---------------------------- -->
+
+
+						<div class="col-md-12 col-xs-12" ng-show="vm.fpytable">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div style="border: 2px solid;">
+									<!-- <canvas id="speedChart1"></canvas> -->
+									<div id="newDiv1"></div>
+									<div id="container1" style="display: none; padding-right: 2%;"></div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+								ng-show="vm.fpytable">
+								<div style="border: 2px solid;">
+									<!-- <canvas id="speedChart"></canvas> -->
+									<div id="newDiv"></div>
+									<div id="container" style="display: none; padding-right: 2%;"></div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div style="border: 2px solid;">
+									<!-- <canvas id="speedChart2"></canvas> -->
+									<div id="newDiv2"></div>
+									<div id="container2" style="display: none; padding-right: 2%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body table-responsive"
+							style="padding-bottom: 0px;">
+							<span style="font-size: 17px;">ON TIME DELIVERY</span>
+							<table border="1" id="t_body1" style="border-color: black;">
+								<thead class="text-nowrap" style="background: #928e8e;">
+									<tr>
+										<th style="color: white;">SUPPLIER CODE</th>
+										<th style="color: white;">SUPPLIER NAME</th>
+										<th style="color: white;">SUPPLIER TYPE</th>
+										<th style="color: white;">YEAR</th>
+										<th style="color: white;">JAN</th>
+										<th style="color: white;">FEB</th>
+										<th style="color: white;">MAR</th>
+										<th style="color: white;">APR</th>
+										<th style="color: white;">MAY</th>
+										<th style="color: white;">JUNE</th>
+										<th style="color: white;">JULY</th>
+										<th style="color: white;">AUG</th>
+										<th style="color: white;">SEP</th>
+										<th style="color: white;">OCT</th>
+										<th style="color: white;">NOV</th>
+										<th style="color: white;">DEC</th>
+										<th style="color: white;">YTD</th>
+									</tr>
+								</thead>
+								<tbody style="background: #c1c1c1;">
+									<tr ng-repeat="otd in vm.otd | filter : search"
+										style="height: 60px;">
+										<td style="padding: 5px;">{{otd.otd_suppliercode}}</td>
+										<td style="padding: 5px;">{{otd.otd_suppliername}}</td>
+										<td style="padding: 5px;">{{otd.otd_suppliertype}}</td>
+										<td style="padding: 5px;">{{otd.otd_year}}</td>
+										<td ng-class="otdjanClass[{{$index}}]" style="padding: 5px;">{{otd.otd_jan}}</td>
+										<td ng-class="otdfebClass[{{$index}}]" style="padding: 5px;">{{otd.otd_feb}}</td>
+										<td ng-class="otdmarClass[{{$index}}]" style="padding: 5px;">{{otd.otd_mar}}</td>
+										<td ng-class="otdaprClass[{{$index}}]" style="padding: 5px;">{{otd.otd_apr}}</td>
+										<td ng-class="otdmayClass[{{$index}}]" style="padding: 5px;">{{otd.otd_may}}</td>
+										<td ng-class="otdjuneClass[{{$index}}]" style="padding: 5px;">{{otd.otd_june}}</td>
+										<td ng-class="otdjulyClass[{{$index}}]" style="padding: 5px;">{{otd.otd_july}}</td>
+										<td ng-class="otdaugClass[{{$index}}]" style="padding: 5px;">{{otd.otd_aug}}</td>
+										<td ng-class="otdsepClass[{{$index}}]" style="padding: 5px;">{{otd.otd_sep}}</td>
+										<td ng-class="otdoctClass[{{$index}}]" style="padding: 5px;">{{otd.otd_oct}}</td>
+										<td ng-class="otdnovClass[{{$index}}]" style="padding: 5px;">{{otd.otd_nov}}</td>
+										<td ng-class="otddecClass[{{$index}}]" style="padding: 5px;">{{otd.otd_dec}}</td>
+										<td
+											ng-class="{redC: (otd.otd_ytd < percentotd), greenC: (otd.otd_ytd >= percentotd)}">{{otd.otd_ytd}}%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel-body table-responsive"
+							style="padding-bottom: 0px; padding-top: 0px;" id="fpytable"
+							ng-show="vm.fpytable">
+							<span style="font-size: 17px;">FIRST PASS YIELD</span>
+							<table border="1" id="t_body1" style="border-color: black;">
+								<thead  style="background: #928e8e;">
+									<tr>
+										<th style="color: white;">SUPPLIER CODE</th>
+										<th style="color: white;">SUPPLIER NAME</th>
+										<th style="color: white;">SUPPLIER TYPE</th>
+										<th style="color: white;">YEAR</th>
+										<th style="color: white;">JAN</th>
+										<th style="color: white;">FEB</th>
+										<th style="color: white;">MAR</th>
+										<th style="color: white;">APR</th>
+										<th style="color: white;">MAY</th>
+										<th style="color: white;">JUNE</th>
+										<th style="color: white;">JULY</th>
+										<th style="color: white;">AUG</th>
+										<th style="color: white;">SEP</th>
+										<th style="color: white;">OCT</th>
+										<th style="color: white;">NOV</th>
+										<th style="color: white;">DEC</th>
+										<th style="color: white;">YTD</th>
+									</tr>
+								</thead>
+								<tbody style="background: #c1c1c1;">
+									<tr ng-repeat="fpy in vm.fpy | filter : search"
+										style="height: 60px;">
+										<td style="padding: 5px;">{{fpy.fpy_suppliercode}}</td>
+										<td style="padding: 5px;">{{fpy.fpy_suppliername}}</td>
+										<td style="padding: 5px;">{{fpy.fpy_suppliertype}}</td>
+										<td style="padding: 5px;">{{fpy.fpy_year}}</td>
+										<td ng-class="fpyjanClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_jan}}</td>
+										<td ng-class="fpyfebClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_feb}}</td>
+										<td ng-class="fpymarClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_mar}}</td>
+										<td ng-class="fpyaprClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_apr}}</td>
+										<td ng-class="fpymayClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_may}}</td>
+										<td ng-class="fpyjuneClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_june}}</td>
+										<td ng-class="fpyjulyClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_july}}</td>
+										<td ng-class="fpyaugClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_aug}}</td>
+										<td ng-class="fpysepClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_sep}}</td>
+										<td ng-class="fpyoctClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_oct}}</td>
+										<td ng-class="fpynovClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_nov}}</td>
+										<td ng-class="fpydecClass[{{$index}}]" style="padding: 5px;">{{fpy.fpy_dec}}</td>
+										<td
+											ng-class="{redC: (fpy.fpy_ytd < percentfpy), greenC: (fpy.fpy_ytd >= percentfpy)}">{{fpy.fpy_ytd}}%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="panel-body table-responsive" style="padding-top: 0px;">
+							<span style="font-size: 17px;"> PPM</span>
+							<table border="1" id="t_body1" style="border-color: black;">
+								<thead style="background: #928e8e;">
+									<tr>
+										<th style="color: white;">SUPPLIER CODE</th>
+										<th style="color: white;">SUPPLIER NAME</th>
+										<th style="color: white;">SUPPLIER TYPE</th>
+										<th style="color: white;">YEAR</th>
+										<th style="color: white;">JAN</th>
+										<th style="color: white;">FEB</th>
+										<th style="color: white;">MAR</th>
+										<th style="color: white;">APR</th>
+										<th style="color: white;">MAY</th>
+										<th style="color: white;">JUNE</th>
+										<th style="color: white;">JULY</th>
+										<th style="color: white;">AUG</th>
+										<th style="color: white;">SEP</th>
+										<th style="color: white;">OCT</th>
+										<th style="color: white;">NOV</th>
+										<th style="color: white;">DEC</th>
+										<th style="color: white;">YTD</th>
+									</tr>
+								</thead>
+								<tbody style="background: #c1c1c1;">
+									<tr ng-repeat="ppm in vm.ppm | filter : search"
+										style="height: 60px;">
+										<td style="padding: 5px;">{{ppm.ppm_suppliercode}}</td>
+										<td style="padding: 5px;">{{ppm.ppm_suppliername}}</td>
+										<td style="padding: 5px;">{{ppm.ppm_supplierType}}</td>
+										<td style="padding: 5px;">{{ppm.ppm_year}}</td>
+										<td ng-class="ppmjanClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_jan}}</td>
+										<td ng-class="ppmfebClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_feb}}</td>
+										<td ng-class="ppmmarClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_mar}}</td>
+										<td ng-class="ppmaprClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_apr}}</td>
+										<td ng-class="ppmmayClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_may}}</td>
+										<td ng-class="ppmjuneClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_june}}</td>
+										<td ng-class="ppmjulyClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_july}}</td>
+										<td ng-class="ppmaugClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_aug}}</td>
+										<td ng-class="ppmsepClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_sep}}</td>
+										<td ng-class="ppmoctClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_oct}}</td>
+										<td ng-class="ppmnovClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_nov}}</td>
+										<td ng-class="ppmdecClass[{{$index}}]" style="padding: 5px;">{{ppm.ppm_dec}}</td>
+										<td
+											ng-class="{redC: (ppm.ppm_ytd > percentppm), greenC: (ppm.ppm_ytd <= percentppm)}">{{ppm.ppm_ytd}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+</body>
+
+<!-- <script>
+	function loadcanvas() {
+
+		setTimeout(function() {
+
+			kendo.drawing.drawDOM($("#pdf")).then(function(group) {
+				kendo.drawing.pdf.saveAs(group, {{otd.otd_suppliercode}});
+			});
+
+		}, 2000);
+
+	}
+</script> -->

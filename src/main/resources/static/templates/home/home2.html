@@ -1,0 +1,278 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="templates/views/css/bootstrap.min.css"
+	media="screen">
+<link rel="stylesheet" href="templates/views/css/font-awesome.min.css"
+	media="screen">
+<link rel="stylesheet"
+	href="templates/views/css/animate-css/animate.min.css" media="screen">
+<link rel="stylesheet"
+	href="templates/views/css/lobipanel/lobipanel.min.css" media="screen">
+<link rel="stylesheet" href="templates/views/css/prism/prism.css"
+	media="screen">
+<link rel="stylesheet" href="templates/views/css/main.css"
+	media="screen">
+<link rel="stylesheet" href="templates/home/css/dashboard.css"
+	media="screen">
+<link rel="stylesheet"
+	href="templates/views/css/icheck/skins/line/blue.css">
+<link rel="stylesheet"
+	href="templates/views/css/icheck/skins/line/red.css">
+<link rel="stylesheet"
+	href="templates/views/css/icheck/skins/line/green.css">
+
+<!---------------------------------- graph -------------------------------->
+<script src="templates/home/js/jquery.min.js"></script>
+<script src="templates/home/js/prefixfree.min"></script>
+<link rel="stylesheet" href="templates/home/css/style.css">
+<!---------------------------------- graph -------------------------------->
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row page-title-div">
+			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<h2 class="title">DASHBOARD</h2>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+				style="padding: 0px;">
+				<div class="dropdown" style="z-index: 1;">
+					<div class="menu menu2">
+						<div class="wow fadeInDownBig">
+							<img src="templates/home/css/notification1-02.png"
+								style="display: block; max-width: 47%; height: auto; margin-top: 8%;">
+						</div>
+						<div class="row1 rowb rowb1 r_top arrow_box">OTD :-
+							{{otdkw}} (KW) | {{otdocc}} (OCC)</div>
+						<div class="row1 rowb rowb2">FPY :- {{fpykw}} (KW) |
+							{{fpyocc}} (OCC)</div>
+						<div class="row1 rowb rowb3">PPM :- {{ppmkw}} (KW) |
+							{{ppmocc}} (OCC)</div>
+						<div class="row1 rowb rowb4">Escalation :- {{escalationkw}}
+							(KW) | {{escalationocc}} (OCC)</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="#"> <span
+						class="color_p"><i class="fa fa-users"></i></span> <span
+						class="number">{{vm.suppliers.length}}</span> <span class="name"><strong>Suppliers</strong></span>
+
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.highPerformance">
+						<span class="color_pink"><i class="fa fa-arrow-up"></i></span> <span
+						class="number">{{highmonth}}</span> <span class="name"><strong>{{month}}
+							High performers</strong> </span>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.lowPerformance">
+						<span class="color_purple"><i class="fa fa-arrow-down"></i></span>
+						<span class="number">{{lowmonth}}</span> <span class="name"><strong>{{month}}
+							Low performers</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.report"> <span
+						class="color_red"><i class="fa fa-ban"></i></span> <span
+						class="number">{{vm.escalations.length}}</span> <span class="name"><strong>Escalation</strong></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.highPerformance">
+						<span class="color_pink"><i class="fa fa-arrow-up"></i></span> <span
+						class="number">{{kw_high}}</span> <span class="name"><strong>High
+							performers (KW) {{year}}</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.highPerformance">
+						<span class="color_pink"><i class="fa fa-arrow-up"></i></span> <span
+						class="number">{{occ_high}}</span> <span class="name"><strong>High
+							performers (OCC) {{year}}</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.lowPerformance">
+						<span class="color_purple"><i class="fa fa-arrow-down"></i></span>
+						<span class="number">{{kw_low}}</span> <span class="name"><strong>Low
+							performers (KW) {{year}}</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.lowPerformance">
+						<span class="color_purple"><i class="fa fa-arrow-down"></i></span>
+						<span class="number">{{occ_low}}</span> <span class="name"><strong>Low
+							performers (OCC) {{year}}</strong></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.otd"
+						style="TEXT-ALIGN: CENTER;"> <span class="name"><strong>AVERAGE
+							OTD (KW) SUPPLIER {{year}}</strong></span>
+						<div class="progress-pie-chart3" data-percent="43">
+							<div class="ppc-progress3">
+								<div class="ppc-progress-fill3"></div>
+							</div>
+							<div class="ppc-percents3">
+								<div class="pcc-percents-wrapper3">
+									<span>%</span>
+								</div>
+							</div>
+						</div> <span class="name"><strong>YEARLY {{avg3 | number : 2}}%</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.otd"
+						style="TEXT-ALIGN: CENTER;"> <span class="name"><strong>AVERAGE
+							OTD(OCC) SUPPLIER {{year}}</strong></span>
+						<div class="progress-pie-chart" data-percent="43">
+							<div class="ppc-progress">
+								<div class="ppc-progress-fill"></div>
+							</div>
+							<div class="ppc-percents">
+								<div class="pcc-percents-wrapper">
+									<span>%</span>
+								</div>
+							</div>
+						</div> <span class="name"><strong>YEARLY {{avg | number : 2}}%</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.fpy2"
+						style="TEXT-ALIGN: CENTER;"> <span class="name"><strong>AVERAGE
+							FPY(OCC) SUPPLIER {{year}}</strong></span>
+						<div class="progress-pie-chart2" data-percent="43">
+							<div class="ppc-progress2">
+								<div class="ppc-progress-fill2"></div>
+							</div>
+							<div class="ppc-percents2">
+								<div class="pcc-percents-wrapper2">
+									<span>%</span>
+								</div>
+							</div>
+						</div> <span class="name"><strong>YEARLY {{avg2 | number : 2}}%</strong></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.ppm2"
+						style="TEXT-ALIGN: CENTER;"> <span class="name"><strong>AVERAGE
+							PPM(KW) SUPPLIER {{year}}</strong></span>
+						<div class="progress-pie-chart4" data-percent="43">
+							<div class="ppc-progress4">
+								<div class="ppc-progress-fill4"></div>
+							</div>
+							<div class="ppc-percents4">
+								<div class="pcc-percents-wrapper4">
+									<span>%</span>
+								</div>
+							</div>
+						</div> <span class="name"><strong>YEARLY {{ppm2_kw}}%</strong></span>
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<a class="dashboard-stat bg-primary" ui-sref="main.ppm2"
+						style="TEXT-ALIGN: CENTER;"> <span class="name"><strong>AVERAGE
+							PPM(OCC) SUPPLIER {{year}}</strong></span>
+						<div class="progress-pie-chart5" data-percent="43">
+							<div class="ppc-progress5">
+								<div class="ppc-progress-fill5"></div>
+							</div>
+							<div class="ppc-percents5">
+								<div class="pcc-percents-wrapper5">
+									<span>%</span>
+								</div>
+							</div>
+						</div> <span class="name"><strong>YEARLY {{ppm2_occ}}%</strong></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-body table-responsive">
+					<div style=" text-transform: uppercase;text-align: center;font-size: 150%;"><strong>LOW PERFORMANCE SUPPLIER LIST FOR {{month}}-{{year}}</strong></div>
+						<table datatable="ng" id="example" class="table display">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>SUPPLIER CODE</th>
+									<th>SUPPLIER NAME</th>
+									<th>SUPPLIER TYPE</th>
+									<th>YEAR</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="otd in lowPer">
+									<td>{{$index+1}}</td>
+									<td>{{otd.otd_suppliercode}}</td>
+									<td>{{otd.otd_suppliername}}</td>
+									<td>{{otd.otd_suppliertype}}</td>
+									<td>{{month}}-{{otd.otd_year}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+<script src="templates/views/js/modernizr/modernizr.min.js"></script>
+<script src="templates/views/js/bootstrap/bootstrap.min.js"></script>
+<script src="templates/views/js/jquery/jquery-2.2.4.min.js"></script>
+<script src="templates/views/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="templates/views/js/main.js"></script>
+<script src="templates/views/js/bootstrap/bootstrap.min.js"></script>
+<script src="templates/views/js/pace/pace.min.js"></script>
+<script src="templates/views/js/lobipanel/lobipanel.min.js"></script>
+<script src="templates/views/js/iscroll/iscroll.js"></script>
+<script src="templates/views/js/prism/prism.js"></script>
+<script src="templates/views/js/waypoint/waypoints.min.js"></script>
+<script src="templates/views/js/counterUp/jquery.counterup.min.js"></script>
+<script src="templates/views/js/icheck/icheck.min.js"></script>
+<script src="templates/views/js/bar-chart.js"></script>
+<script src="templates/views/js/pie-chart.js"></script>
+<script src="templates/views/js/task-list.js"></script>
+<script>
+	$(function() {
+		$('.counter').counterUp({
+			delay : 1,
+			time : 10
+		});
+	});
+</script>
+</html>

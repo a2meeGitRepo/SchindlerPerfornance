@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="templates/views/css/style.css">
+<link rel="stylesheet" href="css/loader.css">
+<div class="showload" ng-show="showLoader"><div id="loaderAi" ></div></div>
+
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">OTD</h2>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER NAME :</label> <select
+								class="form-control" ng-model="otd.otd_suppliername" name=""
+								ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers"
+								required>
+								<option value="">SELECT SUPPLIER NAME</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-2 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER TYPE :</label> <select
+								class="form-control" ng-model="otd.otd_suppliertype" name=""
+								ng-options="supplier.suppliertype_type  as supplier.suppliertype_type for supplier in vm.supptypes"
+								required>
+								<option value="">SELECT SUPPLIER TYPE</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">OTD :</label> <select class="form-control"
+								ng-model="otd.otd_ytd" name=""
+								ng-options="otd.otd_ytd as otd.otd_ytd for otd in vm.otds"
+								required>
+								<option value="">SELECT OTD</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">YEAR :</label><select class="form-control"
+								ng-model="otd.otd_year" name=""
+								ng-options="otd.name as otd.name for otd in sup" required>
+								<option value="">SELECT YEAR</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-1 col-xs-12">
+						<div class="form-group" style="position: absolute; top: 20px;">
+							<button class="btn btn-info " ng-click="vm.search(otd)">
+								<i class="fa fa-search"></i>Search
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>JAN</th>
+								<th>FEB</th>
+								<th>MAR</th>
+								<th>APR</th>
+								<th>MAY</th>
+								<th>JUNE</th>
+								<th>JULY</th>
+								<th>AUG</th>
+								<th>SEP</th>
+								<th>OCT</th>
+								<th>NOV</th>
+								<th>DEC</th>
+								<th>YTD</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="otd in vm.otds">
+								<td>{{$index+1}}</td>
+								<td>{{otd.otd_suppliercode}}</td>
+								<td nowrap>{{otd.otd_suppliername}}</td>
+								<td>{{otd.otd_suppliertype}}</td>
+								<td>{{otd.otd_year}}</td>
+								<td ng-class="myDynamicClass[{{$index}}]" >{{otd.otd_jan}}</td>
+								<td ng-class="febClass[{{$index}}]">{{otd.otd_feb}}</td>
+								<td ng-class="marClass[{{$index}}]">{{otd.otd_mar}}</td>
+								<td ng-class="aprClass[{{$index}}]">{{otd.otd_apr}}</td>
+								<td ng-class="mayClass[{{$index}}]">{{otd.otd_may}}</td>
+								<td ng-class="juneClass[{{$index}}]">{{otd.otd_june}}</td>
+								<td ng-class="julyClass[{{$index}}]">{{otd.otd_july}}</td>
+								<td ng-class="augClass[{{$index}}]">{{otd.otd_aug}}</td>
+								<td ng-class="sepClass[{{$index}}]">{{otd.otd_sep}}</td>
+								<td ng-class="octClass[{{$index}}]">{{otd.otd_oct}}</td>
+								<td ng-class="novClass[{{$index}}]">{{otd.otd_nov}}</td>
+								<td ng-class="decClass[{{$index}}]">{{otd.otd_dec}}</td>
+								<td ng-class="ytdClass[{{$index}}]">{{otd.otd_ytd}}%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

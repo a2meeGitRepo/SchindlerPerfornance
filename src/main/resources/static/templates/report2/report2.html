@@ -1,0 +1,206 @@
+<script type="text/javascript" src="js/jspdf.debug.js"></script>
+
+<head>
+
+<link rel="stylesheet" href="templates/views/css/style.css">
+<script type="text/javascript" src="js/jquery.table2excel.js"></script>
+
+
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="script.js"></script>
+</head>
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<h2 class="title">SUPPLIER PERFORMANCE REPORT</h2>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jspdf.debug.js"></script>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-title">
+					<div class="row">
+						<div class="col-md-12 col-xs-12">
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="name13">YEAR</label> <input type="text" maxlength="4"
+										class="form-control" ng-model="per.performance_year" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57))">
+								</div>
+							</div>
+							<div class="col-md-1 col-xs-1">
+								<div class="form-group">
+									<button class="btn btn-info " ng-click="vm.search(per)"
+										style="position: absolute; top: 25px;">
+										<i class="fa fa-search"></i>Search
+									</button>
+								</div>
+							</div>
+							
+							<div class="col-md-1 col-xs-2">
+								<div class="form-group">
+									<button type="button" class="btn btn-success" ng-click="vm.fnExcelReport()"
+										style="FLOAT: RIGHT; position: absolute; top: 25px;">
+										<i class="fa fa-file-excel-o"></i> Export
+									</button>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body table-responsive" ng-show="fpy">
+					<table id="t_body1" class="table display" border="1">
+						<thead class="text-nowrap">
+							<tr>
+								<td colspan="52" style=" background: #fdb26f;">Supplier Performance Report - {{yr}}</td>
+							</tr>
+							<tr>
+								<td colspan="52" style="text-align: center;     background: #96d8d5;">Supplier
+									Escalation Review - {{yr}} -1st Tier Supplier India.</td>
+							</tr>
+							<tr>
+								<td colspan="3" style="text-align: center;"></td>
+								<td colspan="13" style="text-align: center;background: #98c7f1;">OTD</td>
+								<td colspan="13" style="text-align: center;background: #ffccbc;">PPM</td>
+								<td colspan="13" style="text-align: center;background: #98c7f1;">FPY</td>
+
+							</tr>
+							<tr>
+
+								<td style="background: #ff9b00;">CODE</td>
+								<td style="background: #ff9b00;">NAME</td>
+								<td style="background: #ff9b00;">TYPE</td>
+								<td>JAN</td>
+								<td>FEB</td>
+								<td>MAR</td>
+								<td>APR</td>
+								<td>MAY</td>
+								<td>JUNE</td>
+								<td>JULY</td>
+								<td>AUG</td>
+								<td>SEP</td>
+								<td>OCT</td>
+								<td>NOV</td>
+								<td>DEC</td>
+								<td style=" background: #98c7f1;">YTD</td>
+
+								<td>JAN</td>
+								<td>FEB</td>
+								<td>MAR</td>
+								<td>APR</td>
+								<td>MAY</td>
+								<td>JUNE</td>
+								<td>JULY</td>
+								<td>AUG</td>
+								<td>SEP</td>
+								<td>OCT</td>
+								<td>NOV</td>
+								<td>DEC</td>
+								<td style=" background: #ffccbc;">YTD</td>
+
+								<td>JAN</td>
+								<td>FEB</td>
+								<td>MAR</td>
+								<td>APR</td>
+								<td>MAY</td>
+								<td>JUNE</td>
+								<td>JULY</td>
+								<td>AUG</td>
+								<td>SEP</td>
+								<td>OCT</td>
+								<td>NOV</td>
+								<td>DEC</td>
+								<td style=" background: #98c7f1;">YTD</td>
+
+							</tr>
+						</thead>
+
+						<tbody class="text-nowrap">
+							<tr ng-repeat="per in vm.performances | filter : search">
+
+								<td>{{per.ppm_suppliercode}}</td>
+								<td>{{per.ppm_suppliername}}</td>
+								<td>{{per.ppm_suppliertype}}</td>
+
+								<td ng-class="myDynamicClassOtd[{{$index}}]">{{per.otd_jan}}</td>
+								<td ng-class="febClassOtd[{{$index}}]">{{per.otd_feb}}</td>
+								<td ng-class="marClassOtd[{{$index}}]">{{per.otd_mar}}</td>
+								<td ng-class="aprClassOtd[{{$index}}]">{{per.otd_apr}}</td>
+								<td ng-class="mayClassOtd[{{$index}}]">{{per.otd_may}}</td>
+								<td ng-class="juneClassOtd[{{$index}}]">{{per.otd_june}}</td>
+								<td ng-class="julyClassOtd[{{$index}}]">{{per.otd_july}}</td>
+								<td ng-class="augClassOtd[{{$index}}]">{{per.otd_aug}}</td>
+								<td ng-class="sepClassOtd[{{$index}}]">{{per.otd_sep}}</td>
+								<td ng-class="octClassOtd[{{$index}}]">{{per.otd_oct}}</td>
+								<td ng-class="novClassOtd[{{$index}}]">{{per.otd_nov}}</td>
+								<td ng-class="decClassOtd[{{$index}}]">{{per.otd_dec}}</td>
+								<td ng-class="ytdClassOtd[{{$index}}]" style=" background: #98c7f1;">{{per.otd_ytd}}%</td>
+
+								<td ng-class="myDynamicClassPpm[{{$index}}]">{{per.ppm_jan}}</td>
+								<td ng-class="febClassPpm[{{$index}}]">{{per.ppm_feb}}</td>
+								<td ng-class="marClassPpm[{{$index}}]">{{per.ppm_mar}}</td>
+								<td ng-class="aprClassPpm[{{$index}}]">{{per.ppm_apr}}</td>
+								<td ng-class="mayClassPpm[{{$index}}]">{{per.ppm_may}}</td>
+								<td ng-class="juneClassPpm[{{$index}}]">{{per.ppm_june}}</td>
+								<td ng-class="julyClassPpm[{{$index}}]">{{per.ppm_july}}</td>
+								<td ng-class="augClassPpm[{{$index}}]">{{per.ppm_aug}}</td>
+								<td ng-class="sepClassPpm[{{$index}}]">{{per.ppm_sep}}</td>
+								<td ng-class="octClassPpm[{{$index}}]">{{per.ppm_oct}}</td>
+								<td ng-class="novClassPpm[{{$index}}]">{{per.ppm_nov}}</td>
+								<td ng-class="decClassPpm[{{$index}}]">{{per.ppm_dec}}</td>
+								<td ng-class="ytdClassPpm[{{$index}}]" style=" background: #ffccbc;">{{per.ppm_ytd}}</td>
+
+								<td ng-class="myDynamicClassFpy[{{$index}}]">{{per.fpy_jan}}</td>
+								<td ng-class="febClassFpy[{{$index}}]">{{per.fpy_feb}}</td>
+								<td ng-class="marClassFpy[{{$index}}]">{{per.fpy_mar}}</td>
+								<td ng-class="aprClassFpy[{{$index}}]">{{per.fpy_apr}}</td>
+								<td ng-class="mayClassFpy[{{$index}}]">{{per.fpy_may}}</td>
+								<td ng-class="juneClassFpy[{{$index}}]">{{per.fpy_june}}</td>
+								<td ng-class="julyClassFpy[{{$index}}]">{{per.fpy_july}}</td>
+								<td ng-class="augClassFpy[{{$index}}]">{{per.fpy_aug}}</td>
+								<td ng-class="sepClassFpy[{{$index}}]">{{per.fpy_sep}}</td>
+								<td ng-class="octClassFpy[{{$index}}]">{{per.fpy_oct}}</td>
+								<td ng-class="novClassFpy[{{$index}}]">{{per.fpy_nov}}</td>
+								<td ng-class="decClassFpy[{{$index}}]">{{per.fpy_dec}}</td>
+								<td ng-class="ytdClassFpy[{{$index}}]" style=" background: #98c7f1;">{{per.fpy_ytd}}%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- End First Row -->
+</div>
+
+<script>
+	$('#export_to_excel').click(function() {
+
+		//$("#export_to_excel").hide();
+		//$("#btn_sms").hide();
+		//$("#btn_desc").hide();
+		$("#t_body1").table2excel({
+			exclude : ".action",
+			name : "All Enterprises",
+			filename : "report",
+			fileext : ".xls",
+			exclude_img : true,
+			exclude_links : true,
+			exclude_inputs : true
+		});
+
+	});
+</script>

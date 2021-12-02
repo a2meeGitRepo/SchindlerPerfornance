@@ -1,0 +1,58 @@
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<h2 class="title">SEND SMS</h2>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-title">
+					<form  name="addForm" ng-init="addForm.$pristine">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-md-8">
+										<label>Mobile Number : * </label> <input type="text"
+											ng-model="sms.mob" class="form-control"
+											placeholder="Mobile Number" name="mob" required>
+											<span class="mandatory" ng-show = "addForm.mob.$touched && addForm.mob.$invalid">  
+										<span class="mandatory" ng-show = "addForm.mob.$error.required" style="color:red;">Please Enter proper Mobile number</span>  
+									</span>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>SUPPLIER NAME * </label> <select class="form-control"
+												ng-change="getMob()" ng-model="sms.supp_name" name="supp_name" required
+												ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers">
+												<option value="">SELECT SUPPLIER NAME</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-8">
+										<label>Message </label>
+										<textarea class="form-control input-sm " ng-model="sms.msg"
+											type="textarea" id="message" placeholder="Message" rows="7" name="msg"></textarea>
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										<button class="form-control btn btn-success" id="btnSubmit" style="box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);"
+											name="btnSubmit" ng-click="vm.send(sms)" type="button" ng-disabled="!addForm.$valid">
+											<i class="fa fa-share-square"></i>Send
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

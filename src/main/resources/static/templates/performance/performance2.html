@@ -1,0 +1,49 @@
+<head>
+<link rel="stylesheet" type="text/css" href="Print.css" />
+<link rel="stylesheet" type="text/css" href="printStyle.css" />
+<script src="templates/performance/word/angular-file-model.js"></script> 
+</head>
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">PERFORMANCE CRETERIA</h2>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER Type</th>
+								<th>OTD TARGET</th>
+								<th>FPY TARGET</th>
+								<th>PPM TARGET</th>
+								<th>YEAR</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="performance in vm.performances">
+								<td>{{$index+1}}</td>
+								<td>{{performance.performance_suppliercode}}</td>
+								<td>{{performance.performance_suppliername}}</td>
+								<td>{{performance.performance_suppliertype}}</td>
+								<td>{{performance.performance_otd}}</td>
+								<td>{{performance.performance_fpy}}</td>
+								<td>{{performance.performance_ppm}}</td>
+								<td>{{performance.performance_year}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,67 @@
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">USER MASTER</h2>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div class="title">
+				<a popover-placement="left" uib-popover="Add new entry from here.."
+					popover-trigger="'mouseenter'" class="icon pull-right" ng-click="vm.add()">
+					<button type="button" class="btn btn-success pull-right">
+						<i class="fa fa-plus" aria-hidden="true"></i><b>ADD USER</b>
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>USER CODE</th>
+								<th>USER NAME</th>
+								<th>ROLE</th>
+								<th>EMAIL</th>
+								<th>MOBILE NO</th>
+								<th>ADDED BY</th>
+								
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="user in vm.users">
+								<td>{{$index+1}}</td>
+								<td>{{user.user_code}}</td>
+								<td>{{user.fname}}{{user.lname}}</td>
+								<th>{{user.role.role_name}} - {{user.role.role_acess}}</th>
+								<td>{{user.email}}</td>
+								<td>{{user.mobile_no}}</td>
+								<td>{{user.added_by}}</td>
+								<td class="text-nowrap">
+									<button type="button" class="btn btn-info"
+										ng-click="vm.view(user)">
+										<i class="fa fa-eye" aria-hidden="true"></i>VIEW
+									</button>
+									<button type="button" class="btn btn-success"
+										ng-click="vm.add2(user)">
+										<i class="fa fa-edit" aria-hidden="true"></i>EDIT
+									</button>
+									<button type="button" ng-if="user.role.role_id != 1"  class="btn btn-danger"
+										ng-click="vm.delet(user)">
+										<i class="fa fa-trash" aria-hidden="true"></i>DELETE
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

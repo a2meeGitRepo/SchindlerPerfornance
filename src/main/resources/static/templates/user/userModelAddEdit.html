@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type"
+	content="application/json ; charset=utf-8" />
+
+<title>SCHINDLER PERFORMANCE MANAGEMENT</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
+<link rel="stylesheet" href="css/animate-css/animate.min.css"
+	media="screen">
+<link rel="stylesheet" href="css/lobipanel/lobipanel.min.css"
+	media="screen">
+<link rel="stylesheet" href="css/prism/prism.css" media="screen">
+<link rel="stylesheet" href="css/icheck/skins/line/blue.css">
+<link rel="stylesheet" href="css/icheck/skins/line/red.css">
+<link rel="stylesheet" href="css/icheck/skins/line/green.css">
+<link rel="stylesheet" href="css/main.css" media="screen">
+
+</head>
+<body class="top-navbar-fixed">
+	<div class="main-wrapper">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col-md-9">
+					<h4 class="modal-title" id="myModalLabel">ADD</h4>
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" ng-click="vm.cancel()">&times;</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form name="regLoc">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputEmail13">USER CODE * </label> <input
+										type="text" class="form-control" name="mobile_no"
+										ng-model="user.user_code" placeholder="USER CODE" required>
+									<div ng-if="user1.mobile_no==user.mobile_no"
+										style="color: red;" ng-repeat="user1 in vm.users">* User
+										Code Already Exists</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name13">USER NAME * </label> <input type="text"
+										class="form-control" ng-model="user.fname"
+										ng-change="setUser()" placeholder="USER NAME" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputEmail13">EMAIL * </label> <input
+										type="text" class="form-control" name="email"
+										ng-model="user.email" placeholder="EMAIL"
+										ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+									<span style="color: Red"
+										ng-show="regLoc.email.$dirty&&regLoc.email.$error.pattern">Please
+										Enter Valid Email</span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name13">MOBILE NO * </label> <input type="text"
+										class="form-control" ng-disabled="vm.viewMode"
+										ng-pattern="/^\+?\d{10}$/" name="contact" maxlength="10"
+										onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57))"
+										ng-model="user.mobile_no" placeholder="MOBILE NO"
+										ng-required="true"> <span style="color: Red"
+										ng-show="regLoc.contact.$error.pattern">*Please enter a
+										10 digit mobile no</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputEmail13">PASSWORD * </label> <input
+										type="password" class="form-control d"
+										ng-model="user.password" placeholder="PASSWORD" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputEmail13">SELECT USER ROLE * </label> <select
+										class="form-control" ng-model="user.role.role_id"
+										ng-options="role.role_id as role.role_name+'-'+role.role_acess for role in vm.roles"
+										required>
+										<option value="">SELECT USER ROLE</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" ng-model="user.added_by">
+
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" id="success"
+					ng-disabled="regLoc.$invalid" ng-click="vm.ok(user)">
+					<i class="fa fa-floppy-o" aria-hidden="true"></i>SUBMIT
+				</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal"
+					ng-click="vm.cancel()">
+					<i class="fa fa-times" aria-hidden="true"></i>CLOSE
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/modernizr/modernizr.min.js"></script>
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/pace/pace.min.js"></script>
+	<script src="js/lobipanel/lobipanel.min.js"></script>
+	<script src="js/iscroll/iscroll.js"></script>
+	<script src="js/prism/prism.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/edit_table.js"></script>
+	<script
+		src="templates/skviews/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="templates/skviews/skf/bootstrap/dist/js/tether.min.js"></script>
+	<script src="templates/skviews/skf/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="templates/skviews/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+</body>
+</html>

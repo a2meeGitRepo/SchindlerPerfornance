@@ -1,0 +1,132 @@
+<div class="container">
+<!--banner-->	
+		   <div class="banner">
+		    	<h2>
+				<a href="index.html">Home</a>
+				<i class="fa fa-angle-right"></i>
+				<span>Registration Form</span>
+				</h2>
+		    </div>
+		<!--//banner-->
+ 	<!--grid-->
+ 	<div class="validation-system">
+ 		
+ 	<div class="validation-form">
+ 	<!---->
+  	    <div class="col-md-12">
+         		<p>(<span class="mandatory">*</span>)  Mandatory fields</p>
+         	</div>
+        <form>
+         	<div class="vali-form">
+         	<div class="col-md-12">
+         		<label class="control-label">Name<span class="mandatory">*</span></label>
+         	</div>            
+            <div class="col-md-4 form-group1">
+              <input ng-model="user.fname" type="text" placeholder="Firstname" required="">
+            </div>
+            <div class="col-md-4 form-group1 form-last">
+              <input ng-model="user.mname" type="text" placeholder="Middlename" required="">
+            </div>
+            <div class="col-md-4 form-group1 form-last">
+              <input ng-model="user.lname" type="text" placeholder="Lastname" required="">
+            </div>
+            <div class="clearfix"> </div>
+            </div>
+
+            <div class="col-md-6">
+            	<div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Mobile Number<span class="mandatory">*</span></label>
+	              <input ng-model="user.mobile_no" type="text" placeholder="Mobile Number" required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label ng-model="user.mobile_no1" class="control-label">Mobile Number(Alternate)</label>
+	              <input type="text" placeholder="Mobile Number(Alternate)">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Password<span class="mandatory">*</span></label>
+	              <input ng-model="user.password" type="password" placeholder="Password" required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Repeated Password<span class="mandatory">*</span></label>
+	              <input ng-model="user.con_password" type="password" placeholder="Repeated Password" required="">
+	            </div>
+	            <div class="col-md-12 form-group1 group-mail">
+	              <label class="control-label">Email</label>
+	              <input ng-model="user.email" type="text" placeholder="Email">
+	            </div>
+	            <div class="col-md-12 form-group1 group-mail">
+	              <label class="control-label">Blood Group<span class="mandatory">*</span></label>
+	              <input ng-model="user.blood_group" type="text" placeholder="Blood Group" required="">
+	            </div>
+            	<div class="clearfix"> </div>	
+            </div>
+
+            <div class="col-md-6">
+            	<div class="col-md-12 form-group1 group-mail">
+	              <label class="control-label">Area Address<span class="mandatory">*</span></label>
+	              <input ng-model="user.area_address" type="text" placeholder="" required="">
+	            </div>
+	            <div class="col-md-12 form-group1 group-mail">
+	              <label class="control-label">City<span class="mandatory">*</span></label>
+	              <input ng-model="user.city" type="text" placeholder="" required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Taluka<span class="mandatory">*</span></label>
+	              <input ng-model="user.taluka" type="text" placeholder="" required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">District<span class="mandatory">*</span></label>
+	              <input ng-model="user.district" type="text" placeholder="" required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">State</label>
+	              <input ng-model="user.state" type="text" placeholder="" required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Zip Code</label>
+	              <input ng-model="user.zipcode" type="number" placeholder="" required="">
+	            </div>
+	            <div class="col-md-12 form-group1 group-mail">
+	              <label class="control-label">Country</label>
+	              <input ng-model="user.country" type="text" placeholder="" required="">
+	            </div>
+            	<div class="clearfix"> </div>	
+            </div>
+            <div class="col-md-12">
+            	<div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Date Of Birth<span class="mandatory">*</span></label>
+	              <input ng-model="user.dob" type="date" placeholder="" required="">
+	            </div>
+
+	            <div class="form-group col-md-6">
+					<label for="checkbox" class="col-md-12 control-label">Gender<span class="mandatory">*</span></label>
+					<div class="col-md-12" style="margin: 21px;">
+						<div class="checkbox-inline"><label><input type="checkbox"> Male</label></div>
+						<div class="checkbox-inline"><label><input type="checkbox"> Female</label></div>
+					</div>
+		 		</div>
+	        </div>
+            <div class="col-md-12">
+            	<div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Education</label>
+	              <input ng-model="user.education" type="text" placeholder="B.E.(E&TC)/BSC/MBA/MBBS etc.." required="">
+	            </div>
+	            <div class="col-md-6 form-group1 group-mail">
+	              <label class="control-label">Profession<span class="mandatory">*</span></label>
+	              <input ng-model="user.profession" type="text" placeholder="Student/Farmer/Business/Teacher/Doctor etc.." required="">
+	            </div>
+	        </div>
+          
+            <div class="col-md-12 form-group">
+              <button type="submit" class="btn btn-primary" ng-click="vm.submit(user)">Submit</button>
+              <button type="reset" class="btn btn-default">Reset</button>
+            </div>
+          <div class="clearfix"> </div>
+        </form>
+    
+ 	<!---->
+ </div>
+
+</div>
+ 	<!--//grid-->
+ 	

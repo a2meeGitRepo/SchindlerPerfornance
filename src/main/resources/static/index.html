@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" class="no-js">
+<head>
+<title>SCHINDLER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript">addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- ========== Css Files ========== -->
+<link rel="stylesheet"	href="css/root.css">
+<link rel="stylesheet"	href="css/style.css">
+<link rel="stylesheet"	href="templates/views/css/bootstrap.min.css"			media="screen">
+<link rel="stylesheet"	href="templates/views/css/font-awesome.min.css"			media="screen">
+<link rel="stylesheet"	href="templates/views/css/animate-css/animate.min.css"	media="screen">
+<link rel="stylesheet"	href="templates/views/css/lobipanel/lobipanel.min.css"	media="screen">
+<link rel="stylesheet"	href="templates/views/css/prism/prism.css"				media="screen">
+<link rel="stylesheet"	href="templates/views/css/main.css"						media="screen">
+<link rel="stylesheet"	href="templates/views/css/icheck/skins/line/blue.css">
+<link rel="stylesheet"	href="templates/views/css/icheck/skins/line/red.css">
+<link rel="stylesheet"	href="templates/views/css/icheck/skins/line/green.css">
+<link rel="stylesheet" 	href="bower_components/angular-toastr/dist/angular-toastr.css"type="text/css" />
+<script src="templates/performance/word/angular-file-model.js"></script> 
+
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-loader/angular-loader.min.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script	src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script	src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+<script	src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+<script src="js/ui-bootstrap-tpls-2.1.4.js"></script>
+<script src="bower_components/chart.js/dist/Chart.min.js"></script>
+<script	src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="templates/app.js"></script>
+
+<!-- Main Start -->
+<script src="templates/main/main.module.js"></script>
+<script src="templates/main/main.controller.js"></script>
+<script src="templates/main/main.service.js"></script>
+<!-- Main End -->
+
+<!-- home Start -->
+<script src="templates/home/home.module.js"></script>
+<script src="templates/home/home.controller.js"></script>
+<script src="templates/home/home.service.js"></script>
+<!-- home End -->
+
+<!-- User Start -->
+<script src="templates/user/user.module.js"></script>
+<script src="templates/user/user.controller.js"></script>
+<script src="templates/user/user.service.js"></script>
+<script src="templates/user/user.http.js"></script>
+<!-- User End -->
+
+<!-- Login form Start -->
+<script src="templates/login_form/login_form.module.js"></script>
+<script src="templates/login_form/login_form.controller.js"></script>
+<script src="templates/login_form/login_form.service.js"></script>
+<script src="templates/login_form/login_form.http.js"></script>
+<!-- Login form End -->
+
+
+<!-- Employee Start -->
+<script src="templates/employee/employee.module.js"></script>
+<script src="templates/employee/employee.controller.js"></script>
+<script src="templates/employee/employee.service.js"></script>
+<script src="templates/employee/employee.http.js"></script>
+<!-- Employee End -->
+
+<!-- performance Start -->
+<script src="templates/performance/performance.module.js"></script>
+<script src="templates/performance/performance.controller.js"></script>
+<script src="templates/performance/performance.service.js"></script>
+<script src="templates/performance/performance.http.js"></script>
+<!-- performance End -->
+
+<!-- suppliertype Start -->
+<script src="templates/suppliertype/suppliertype.module.js"></script>
+<script src="templates/suppliertype/suppliertype.controller.js"></script>
+<script src="templates/suppliertype/suppliertype.service.js"></script>
+<script src="templates/suppliertype/suppliertype.http.js"></script>
+<!-- suppliertype End -->
+
+<!-- supplier Start -->
+<script src="templates/supplier/supplier.module.js"></script>
+<script src="templates/supplier/supplier.controller.js"></script>
+<script src="templates/supplier/supplier.service.js"></script>
+<script src="templates/supplier/supplier.http.js"></script>
+<!-- supplier End -->
+
+<!-- fpy Start -->
+<script src="templates/fpy/fpy.module.js"></script>
+<script src="templates/fpy/fpy.controller.js"></script>
+<script src="templates/fpy/fpy.service.js"></script>
+<script src="templates/fpy/fpy.http.js"></script>
+<!-- fpy End -->
+
+<!-- ppm Start -->
+<script src="templates/ppm/ppm.module.js"></script>
+<script src="templates/ppm/ppm.controller.js"></script>
+<script src="templates/ppm/ppm.service.js"></script>
+<script src="templates/ppm/ppm.http.js"></script>
+<!-- ppm End -->
+
+<!-- otd Start -->
+<script src="templates/otd/otd.module.js"></script>
+<script src="templates/otd/otd.controller.js"></script>
+<script src="templates/otd/otd.service.js"></script>
+<script src="templates/otd/otd.http.js"></script>
+<!-- otd End -->
+
+
+<!-- sendsms Start -->
+<script src="templates/sendsms/sendsms.module.js"></script>
+<script src="templates/sendsms/sendsms.controller.js"></script>
+<script src="templates/sendsms/sendsms.service.js"></script>
+<script src="templates/sendsms/sendsms.http.js"></script>
+<!-- sendsms End -->
+
+
+<!-- supplierstatus Start -->
+<script src="templates/supplierstatus/supplierstatus.module.js"></script>
+<script src="templates/supplierstatus/supplierstatus.controller.js"></script>
+<script src="templates/supplierstatus/supplierstatus.service.js"></script>
+<script src="templates/supplierstatus/supplierstatus.http.js"></script>
+<!-- supplierstatus End -->
+
+<!-- escalation Start -->
+<script src="templates/escalation/escalation.module.js"></script>
+<script src="templates/escalation/escalation.controller.js"></script>
+<script src="templates/escalation/escalation.service.js"></script>
+<script src="templates/escalation/escalation.http.js"></script>
+<!-- escalation End -->
+
+
+<!-- vendorPerformance Start -->
+<script src="templates/vendorPerformance/vendorPerformance.module.js"></script>
+<script src="templates/vendorPerformance/vendorPerformance.controller.js"></script>
+<script src="templates/vendorPerformance/vendorPerformance.service.js"></script>
+<script src="templates/vendorPerformance/vendorPerformance.http.js"></script>
+<!-- vendorPerformance End -->
+
+
+<!-- highPerformance Start -->
+<script src="templates/highPerformance/highPerformance.module.js"></script>
+<script src="templates/highPerformance/highPerformance.controller.js"></script>
+<script src="templates/highPerformance/highPerformance.service.js"></script>
+<script src="templates/highPerformance/highPerformance.http.js"></script>
+<!-- highPerformance End -->
+
+
+
+<!-- lowPerformance Start -->
+<script src="templates/lowPerformance/lowPerformance.module.js"></script>
+<script src="templates/lowPerformance/lowPerformance.controller.js"></script>
+<script src="templates/lowPerformance/lowPerformance.service.js"></script>
+<script src="templates/lowPerformance/lowPerformance.http.js"></script>
+<!-- lowPerformance End -->
+
+
+
+
+<!-- Sale Start -->
+<script src="templates/sale/sale.module.js"></script>
+<script src="templates/sale/sale.controller.js"></script>
+<script src="templates/sale/sale.service.js"></script>
+<script src="templates/sale/sale.services.js"></script>
+<script src="templates/sale/sale.directives.js"></script>
+<script src="templates/sale/sale.http.js"></script>
+<!-- Sale End -->
+
+<!-- report Start -->
+<script src="templates/report/report.module.js"></script>
+<script src="templates/report/report.controller.js"></script>
+<!-- report End -->
+
+<!-- report Start -->
+<script src="templates/report2/report2.module.js"></script>
+<script src="templates/report2/report2.controller.js"></script>
+<!-- report End -->
+
+<!-- Generic Start -->
+<script src="templates/generic/generic.module.js"></script>
+<script src="templates/generic/generic.factory.js"></script>
+<script src="templates/generic/generic.http.js"></script>
+<!-- Generic End -->
+
+<!-- password Start -->
+<script src="templates/password/password.module.js"></script>
+<script src="templates/password/password.controller.js"></script>
+<!-- password End -->
+
+
+</head>
+<body>
+<div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
+<div ui-view="main"></div>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/plugins.js"></script>
+	<script type="text/javascript" src="js/bootstrap-select/bootstrap-select.js"></script>
+	<script type="text/javascript" src="js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-wysihtml5/wysihtml5-0.3.0.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+	<script type="text/javascript" src="js/summernote/summernote.min.js"></script>
+	<script type="text/javascript" src="js/chartist/chartist.js"></script>
+	<script type="text/javascript" src="js/chartist/chartist-plugin.js"></script>
+	<script type="text/javascript" src="js/easypiechart/easypiechart.js"></script>
+	<script type="text/javascript" src="js/easypiechart/easypiechart-plugin.js"></script>
+	<script type="text/javascript" src="js/sparkline/sparkline.js"></script>
+	<script type="text/javascript" src="js/sparkline/sparkline-plugin.js"></script>
+	<script type="text/javascript" src="js/rickshaw/d3.v3.js"></script>
+	<script type="text/javascript" src="js/rickshaw/rickshaw.js"></script>
+	<script type="text/javascript" src="js/rickshaw/rickshaw-plugin.js"></script>
+	<script type="text/javascript" src="js/datatables/datatables.min.js"></script>
+	<script type="text/javascript" src="js/sweet-alert/sweet-alert.min.js"></script>
+	<script type="text/javascript" src="js/kode-alert/main.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="js/gmaps/gmaps.js"></script>
+	<script type="text/javascript" src="js/gmaps/gmaps-plugin.js"></script>
+	<script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/moment/moment.min.js"></script>
+	<script type="text/javascript" src="js/full-calendar/fullcalendar.js"></script>
+	<script type="text/javascript" src="js/date-range-picker/daterangepicker.js"></script>
+	<script type="text/javascript" src="templates/views/js/jquery/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="templates/views/js/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="templates/views/js/main.js"></script>
+	<script type="text/javascript" type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
+</body>
+</html>

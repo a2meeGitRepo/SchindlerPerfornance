@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type"
+	content="application/json ; charset=utf-8" />
+
+<title>SCHINDLER PERFORMANCE MANAGEMENT</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
+<link rel="stylesheet" href="css/animate-css/animate.min.css"
+	media="screen">
+<link rel="stylesheet" href="css/lobipanel/lobipanel.min.css"
+	media="screen">
+<link rel="stylesheet" href="css/prism/prism.css" media="screen">
+<link rel="stylesheet" href="css/icheck/skins/line/blue.css">
+<link rel="stylesheet" href="css/icheck/skins/line/red.css">
+<link rel="stylesheet" href="css/icheck/skins/line/green.css">
+<link rel="stylesheet" href="css/main.css" media="screen">
+
+</head>
+<body class="top-navbar-fixed">
+	<div class="main-wrapper">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col-md-9">
+					<h4 class="modal-title" id="myModalLabel">ADD</h4>
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" ng-click="vm.cancel()">&times;</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form name="regLoc">
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">SUPPLIER CODE * </label> <input type="text" ng-disabled="supplier.mode == 'edit'"
+									class="form-control" ng-model="supplier.supplier_code"
+									placeholder="SUPPLIER CODE" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">SUPPLIER NAME * </label> <input type="text"
+									ng-change="setDeletes()" class="form-control"
+									ng-model="supplier.supplier_name" placeholder="SUPPLIER NAME"
+									required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">SUPPLIER TYPE * </label> <select
+									class="form-control" ng-model="supplier.supplier_type" required
+									ng-options="suppliertype.suppliertype_type as suppliertype.suppliertype_type for suppliertype in vm.suppliertypes">
+									<option value="">SELECT SUPPLIER TYPE</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">CONTACT PERSON</label> <input type="text"
+									class="form-control" ng-model="supplier.supplier_contactperson"
+									placeholder="CONTACT PERSON">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">ADDRESS  </label> <input type="text"
+									class="form-control" ng-model="supplier.supplier_address"
+									placeholder="ADDRESS" >
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">REGION </label> <select
+									class="form-control" ng-model="supplier.supplier_region"
+									>
+									<option value="">SELECT SUPPLIER REGION</option>
+									<option value="import">IMPORT</option>
+									<option value="local">LOCAL</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="exampleInputEmail13">EMAIL * </label> <input
+									type="email" class="form-control" name="email1"
+									ng-model="supplier.supplier_email" placeholder="EMAIL" required>
+								<span style="color: Red" ng-show="regLoc.email1.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name13">MOBILE NO * </label> <input type="text"
+									class="form-control" ng-model="supplier.supplier_mobile"
+									maxlength="10" placeholder="MOBILE NO"
+									ng-pattern="/^\+?\d{10}$/" name="contact1"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))"
+									> <span style="color: Red"
+									ng-show="regLoc.contact1.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email2"
+									ng-model="supplier.supplier_email2" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email2.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email3"
+									ng-model="supplier.supplier_email3" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email3.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact2"
+									ng-model="supplier.supplier_mobile2" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact2.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact3"
+									ng-model="supplier.supplier_mobile3" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact3.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email4"
+									ng-model="supplier.supplier_email4" placeholder="EMAIL">
+
+								<span style="color: Red" ng-show="regLoc.email4.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email5"
+									ng-model="supplier.supplier_email5" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email5.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact4"
+									ng-model="supplier.supplier_mobile4" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact4.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact5"
+									ng-model="supplier.supplier_mobile5" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact5.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email6"
+									ng-model="supplier.supplier_email6" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email6.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email7"
+									ng-model="supplier.supplier_email7" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email7.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact6"
+									ng-model="supplier.supplier_mobile6" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact6.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact7"
+									ng-model="supplier.supplier_mobile7" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact7.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email8"
+									ng-model="supplier.supplier_email8" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email8.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email9"
+									ng-model="supplier.supplier_email9" placeholder="EMAIL">
+								<span style="color: Red" ng-show="regLoc.email9.$error.email">*Invalid
+									email address.</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact8"
+									ng-model="supplier.supplier_mobile8" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact8.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" name="contact9"
+									ng-model="supplier.supplier_mobile9" placeholder="MOBILE NO"
+									maxlength="10" ng-pattern="/^\+?\d{10}$/"
+									onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 43) || (event.charCode == 45) || (event.charCode == 40) || (event.charCode == 41) || (event.charCode == 32))">
+								<span style="color: Red"
+									ng-show="regLoc.contact9.$error.pattern">*Please enter a
+									10 digit mobile no</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" id="success"
+					ng-disabled="regLoc.$invalid" ng-click="vm.ok(supplier)">
+					<i class="fa fa-floppy-o" aria-hidden="true"></i>SUBMIT
+				</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal"
+					ng-click="vm.cancel()">
+					<i class="fa fa-times" aria-hidden="true"></i>CLOSE
+				</button>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/pace/pace.min.js"></script>
+	<script src="js/lobipanel/lobipanel.min.js"></script>
+	<script src="js/iscroll/iscroll.js"></script>
+	<script src="js/modernizr/modernizr.min.js"></script>
+	<script src="js/prism/prism.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/edit_table.js"></script>
+	<script
+		src="templates/skviews/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="templates/skviews/skf/bootstrap/dist/js/tether.min.js"></script>
+	<script src="templates/skviews/skf/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="templates/skviews/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+</body>
+</html>

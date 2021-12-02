@@ -1,0 +1,14 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">DELETE PPM</h3>
+</div>
+<div class="modal-body" style="text-align-last: center;">
+	<span>ARE YOU SURE YOU WANT TO DELETE THIS PPM OF SUPPLIER -  <b style="text-transform: uppercase;">{{vm.items.ppm_suppliername}}</b> ?</span>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" ng-click="vm.ok();">
+		<i class="fa fa-trash" aria-hidden="true"></i>DELETE
+	</button>
+	<button class="btn btn-info" ng-click="vm.cancel();">
+		<i class="fa fa-times" aria-hidden="true"></i> CLOSE
+	</button>
+</div>

@@ -1,0 +1,30 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">VIEW</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<dl class="dl-horizontal">
+		<dt>USER CODE</dt>
+		<dd>{{vm.items.mobile_no}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>USER NAME</dt>
+		<dd>{{vm.items.fname}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>EMAIL</dt>
+		<dd>{{vm.items.email}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>MOBILE NO</dt>
+		<dd>{{vm.items.user_code}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>ADDED BY</dt>
+		<dd>{{vm.items.added_by}}</dd>
+	</dl>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" type="button" ng-click="vm.cancel()">
+		<i class="fa fa-times" aria-hidden="true"></i>Close
+	</button>
+</div>

@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="templates/views/css/style.css">
+<link rel="stylesheet" href="css/loader.css">
+<div class="showload" ng-show="showLoader"><div id="loaderAi" ></div></div>
+
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">FPY</h2>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER NAME :</label> <select
+								class="form-control" ng-model="fpy.fpy_suppliername" name=""
+								ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers"
+								required>
+								<option value="">SELECT SUPPLIER NAME</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-2 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">SUPPLIER TYPE :</label> <select
+								class="form-control" ng-model="fpy.fpy_suppliertype" name=""
+								ng-options="supplier.suppliertype_type  as supplier.suppliertype_type for supplier in vm.supptypes"
+								required>
+								<option value="">SELECT SUPPLIER TYPE</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">FPY :</label> <select class="form-control"
+								ng-model="fpy.fpy_ytd" name=""
+								ng-options="fpy.fpy_ytd as fpy.fpy_ytd for fpy in vm.fpys"
+								required>
+								<option value="">SELECT FPY</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="form-group">
+							<label for="fullname">YEAR :</label><select class="form-control"
+								ng-model="fpy.fpy_year" name=""
+								ng-options="fpy.name as fpy.name for fpy in sup"
+								required>
+								<option value="">SELECT YEAR</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-1 col-xs-12">
+						<div class="form-group" style="position: absolute; top: 20px;">
+							<button class="btn btn-info " ng-click="vm.search(fpy)">
+								<i class="fa fa-search"></i>Search
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>JAN</th>
+								<th>FEB</th>
+								<th>MAR</th>
+								<th>APR</th>
+								<th>MAY</th>
+								<th>JUNE</th>
+								<th>JULY</th>
+								<th>AUG</th>
+								<th>SEP</th>
+								<th>OCT</th>
+								<th>NOV</th>
+								<th>DEC</th>
+								<th>YTD</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="fpy in vm.fpys">
+								<td>{{$index+1}}</td>
+								<td>{{fpy.fpy_suppliercode}}</td>
+								<td nowrap>{{fpy.fpy_suppliername}}</td>
+								<td>{{fpy.fpy_suppliertype}}</td>
+								<td>{{fpy.fpy_year}}</td>
+								<td ng-class="myDynamicClass[{{$index}}]" >{{fpy.fpy_jan}}</td>
+								<td ng-class="febClass[{{$index}}]">{{fpy.fpy_feb}}</td>
+								<td ng-class="marClass[{{$index}}]">{{fpy.fpy_mar}}</td>
+								<td ng-class="aprClass[{{$index}}]">{{fpy.fpy_apr}}</td>
+								<td ng-class="mayClass[{{$index}}]">{{fpy.fpy_may}}</td>
+								<td ng-class="juneClass[{{$index}}]">{{fpy.fpy_june}}</td>
+								<td ng-class="julyClass[{{$index}}]">{{fpy.fpy_july}}</td>
+								<td ng-class="augClass[{{$index}}]">{{fpy.fpy_aug}}</td>
+								<td ng-class="sepClass[{{$index}}]">{{fpy.fpy_sep}}</td>
+								<td ng-class="octClass[{{$index}}]">{{fpy.fpy_oct}}</td>
+								<td ng-class="novClass[{{$index}}]">{{fpy.fpy_nov}}</td>
+								<td ng-class="decClass[{{$index}}]">{{fpy.fpy_dec}}</td>
+								<td ng-class="ytdClass[{{$index}}]">{{fpy.fpy_ytd}}%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

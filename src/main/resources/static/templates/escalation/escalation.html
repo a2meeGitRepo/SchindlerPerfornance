@@ -1,0 +1,346 @@
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+			<h2 class="title">ESCALATION</h2>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding: 0px;"  ng-show="vm.searchHide">
+			<div class="alert alert-danger">
+				<strong>WARNING! </strong> Supplier details not found.
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body table-responsive">
+					<form name="regLoc">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="name13">SUPPLIER CODE * </label> 
+										<select class="form-control" ng-change="setDeletes(); getExistingData(escalation); findSupplie()" ng-model="escalation.escalation_suppliercode"
+											ng-options="supplier.supplier_code as supplier.supplier_code for supplier in vm.suppliers" required>
+											<option value="">SELECT SUPPLIER CODE</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="name13">SUPPLIER NAME * </label> 
+										<select class="form-control" ng-change="setDeletes();getExistingData(escalation);  findSupplie()" ng-model="escalation.escalation_suppliername"
+											ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers" required>
+											<option value="">SELECT SUPPLIER NAME</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="name13">SUPPLIER TYPE * </label> 
+										<select class="form-control" ng-model="escalation.escalation_suppliertype" ng-change="getExistingData(escalation); findSupplie()"
+											ng-options="suppliertype.suppliertype_type as suppliertype.suppliertype_type for suppliertype in vm.suppliertypes"required>
+											<option value="">SELECT SUPPLIER TYPE</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="name13">SUPPLIER YEAR * </label> 
+										<input type="text" ng-pattern="/^(\d)+$/" ng-change="getExistingData(escalation); findSupplie()"  maxlength="4"
+										onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57))" 
+										class="form-control" ng-model="escalation.escalation_year">
+									</div>
+								</div>
+							</div>
+							<table border="1" id="t_body1">
+								<thead class="text-nowrap">
+									<tr>
+										<th>Escalation Matrix</th>
+										<th colspan="2">Status</th>
+										<th>IMPORT</th>
+										<th>SEND</th>
+										<th>DATE</th>
+									</tr>
+								</thead>
+								<tbody class="text-nowrap">
+									<tr>
+										<td>Warning Letter Issue</td>
+										<td>{{yes}}</td>
+										<td>{{no}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable()" class="form-control" ng-required="true"   ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(1);setWarning()" ng-disabled="isDisabled">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_warning" required disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable1">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_warningdate" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Action Plan receive</td>
+										<td>{{yes1}}</td>
+										<td>{{no1}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable2()" class="form-control" ng-required="true"   ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(2)" ng-disabled="isDisabled2">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_planreceive1" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable2">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_planreceive1date" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Action Plan Validated</td>
+										<td>{{yes2}}</td>
+										<td>{{no2}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable3()"class="form-control" ng-required="true"   ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}"ng-dblclick="$event.stopPropagation();"ng-click="vm.uploadXlxs(3)" ng-disabled="isDisabled3">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_planvalidated1" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable3">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_planvalidated1date" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Escalated to level 1</td>
+										<td>{{yes3}}</td>
+										<td>{{no3}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable4()" class="form-control" ng-required="true"   ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(4)" ng-disabled="isDisabled4">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_level1" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable4">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_level1date" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Action Plan receive</td>
+										<td>{{yes4}}</td>
+										<td>{{no4}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable5()" class="form-control" ng-required="true"   ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(5)" ng-disabled="isDisabled5">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_planreceive2" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable5">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_planreceive2date" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Action Plan Validated</td>
+										<td>{{yes5}}</td>
+										<td>{{no5}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable6()" class="form-control" ng-required="true"  ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(6)" ng-disabled="isDisabled6">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_planvalidated2" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable6">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_planvalidated2date" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>De-escalated</td>
+										<td>{{yes6}}</td>
+										<td>{{no6}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable7()" class="form-control" ng-required="true"  ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(7)" ng-disabled="isDisabled7">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_deescalated" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable7">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_deescalateddate" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Escalated to Level 2</td>
+										<td>{{yes7}}</td>
+										<td>{{no7}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable8()" class="form-control" ng-required="true"  ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}" ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(8)" ng-disabled="isDisabled8">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_level2" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable8">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_level2date" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>Supplier Discontinued</td>
+										<td>{{yes8}}</td>
+										<td>{{no8}}</td>
+										<td>
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<input type="file" id="fileAsset" file-model="myFile" onchange="angular.element(this).scope().enable9()" class="form-control" ng-required="true"  ng-disabled="input1"/> 
+													<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+												</div>
+												<div class="col-md-1">
+													<button type="button" id="import" class="btn btn-info" ng-click-options="{preventDoubleClick: true}"ng-dblclick="$event.stopPropagation();" ng-click="vm.uploadXlxs(9)" ng-disabled="isDisabled9">
+														<i class="fa fa-download" aria-hidden="true"></i>
+													</button>
+												</div>
+												<div class="col-md-5">
+													<input type="text" class="form-control" ng-model="escalation.escalation_discontinued" disabled>
+												</div>
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.send(escalation)" ng-disabled="sendDisable9">
+												<i class="fa fa-envelope" aria-hidden="true"></i>SEND
+											</button>
+										</td>
+										<td>
+											<input type="text" class="form-control" ng-model="escalation.escalation_date" disabled>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" id="success" ng-click="refresh1();vm.ok(escalation); " ng-disabled="regLoc.$invalid">
+							<i class="fa fa-floppy-o" aria-hidden="true"></i>SUBMIT
+						</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="refresh()">
+							<i class="fa fa-times" aria-hidden="true"></i>CLOSE
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

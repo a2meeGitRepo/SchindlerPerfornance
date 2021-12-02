@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="application/json ; charset=utf-8" />
+<title>IIser_Pune</title>
+<!-- ========== COMMON STYLES ========== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
+<link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
+<link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen">
+<!-- ========== PAGE STYLES ========== -->
+<link rel="stylesheet" href="css/prism/prism.css" media="screen">
+<!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
+<link rel="stylesheet" href="css/icheck/skins/line/blue.css">
+<link rel="stylesheet" href="css/icheck/skins/line/red.css">
+<link rel="stylesheet" href="css/icheck/skins/line/green.css">
+<!-- ========== THEME CSS ========== -->
+<link rel="stylesheet" href="css/main.css" media="screen">
+<!-- ========== MODERNIZR ========== -->
+<script src="js/modernizr/modernizr.min.js"></script>
+</head>
+
+<body class="top-navbar-fixed">
+	<div class="main-wrapper">
+		<!-- ========== WRAPPER FOR BOTH SIDEBARS & MAIN CONTENT ========== -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col-md-9">
+					<h4 class="modal-title" id="myModalLabel">Add</h4>
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="vm.cancel()">&times;</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form name="regLoc">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>S-O No-</label> 
+								<input type="text" class="form-control" ng-model="sale.sale_no">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Contract</label> 
+								<input type="text" class="form-control" ng-model="sale.contract">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Comm-Nr-</label> 
+								<input type="text" class="form-control" ng-model="sale.comm_nr">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Type</label> 
+								<input type="text" class="form-control" ng-model="sale.type">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Product Line</label> 
+								<input type="text" class="form-control" ng-model="sale.product_line">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Product family</label> 
+								<input type="text" class="form-control" ng-model="sale.product_family">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Product Family 1</label> 
+								<input type="text" class="form-control" ng-model="sale.product_family1">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Plant</label> 
+								<input type="text" class="form-control" ng-model="sale.plant">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>SLOC</label> 
+								<input type="text" class="form-control" ng-model="sale.sloc">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Warehouse</label> 
+								<input type="text" class="form-control" ng-model="sale.warehouse">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Pull Date</label> 
+								<input type="text" class="form-control" ng-model="sale.pull_date">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Pull Month</label> 
+								<input type="text" class="form-control" ng-model="sale.pull_month">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>With SCAR Sch- Date</label> 
+								<input type="text" class="form-control" ng-model="sale.sch_date">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Without Scar 5150 Date</label> 
+								<input type="text" class="form-control" ng-model="sale.scar_date">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Final Disaptch date</label> 
+								<input type="text" class="form-control" ng-model="sale.disaptch_date">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Sales Offce</label> 
+								<input type="text" class="form-control" ng-model="sale.sales_offce">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>City</label> 
+								<input type="text" class="form-control" ng-model="sale.city">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>SCAR Days</label> 
+								<input type="text" class="form-control" ng-model="sale.scar_days">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>ACP(10)</label> 
+								<input type="text" class="form-control" ng-model="sale.acp">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>NIP(20)</label> 
+								<input type="text" class="form-control" ng-model="sale.nip">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Site Address(9)</label> 
+								<input type="text" class="form-control" ng-model="sale.site_address">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Sales office Code(14)</label> 
+								<input type="text" class="form-control" ng-model="sale.office_code">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Lead time</label> 
+								<input type="text" class="form-control" ng-model="sale.lead_time">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>WBS Element</label> 
+								<input type="text" class="form-control" ng-model="sale.wbs_element">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Passenger Capacity</label> 
+								<input type="text" class="form-control" ng-model="sale.passenger_capacity">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Warehouse</label> 
+								<input type="text" class="form-control" ng-model="sale.warehouse2">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Remarks</label> 
+								<input type="text" class="form-control" ng-model="sale.remarks">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" id="success" ng-click="vm.ok(sale)">Submit</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.cancel()">Close</button>
+			</div>
+		</div>
+	</div>
+	<!-- ========== COMMON JS FILES ========== -->
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/pace/pace.min.js"></script>
+	<script src="js/lobipanel/lobipanel.min.js"></script>
+	<script src="js/iscroll/iscroll.js"></script>
+	<!-- ========== PAGE JS FILES ========== -->
+	<script src="js/prism/prism.js"></script>
+	<!-- ========== THEME JS ========== -->
+	<script src="js/main.js"></script>
+	<script src="js/edit_table.js"></script>
+	<!-- jQuery -->
+	<script src="templates/skviews/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="templates/skviews/skf/bootstrap/dist/js/tether.min.js"></script>
+	<script src="templates/skviews/skf/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="templates/skviews/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+	<!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
+</body>
+</html>

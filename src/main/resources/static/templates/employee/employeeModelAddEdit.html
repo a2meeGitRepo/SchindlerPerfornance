@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type"
+	content="application/json ; charset=utf-8" />
+
+<title>IIser_Pune</title>
+
+<!-- ========== COMMON STYLES ========== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
+<link rel="stylesheet" href="css/animate-css/animate.min.css"
+	media="screen">
+<link rel="stylesheet" href="css/lobipanel/lobipanel.min.css"
+	media="screen">
+
+<!-- ========== PAGE STYLES ========== -->
+<link rel="stylesheet" href="css/prism/prism.css" media="screen">
+<!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
+<link rel="stylesheet" href="css/icheck/skins/line/blue.css">
+<link rel="stylesheet" href="css/icheck/skins/line/red.css">
+<link rel="stylesheet" href="css/icheck/skins/line/green.css">
+
+<!-- ========== THEME CSS ========== -->
+<link rel="stylesheet" href="css/main.css" media="screen">
+
+<!-- ========== MODERNIZR ========== -->
+<script src="js/modernizr/modernizr.min.js"></script>
+</head>
+<body class="top-navbar-fixed">
+	<div class="main-wrapper">
+
+		<!-- ========== TOP NAVBAR ========== -->
+		<nav class="navbar top-navbar bg-white box-shadow">
+			<div class="container-fluid">
+				<div class="row">
+				<H1>Add Employee</H1>
+					<div class="navbar-header no-padding" style="float: right;">
+						<a class="navbar-brand" href="index.html"> <img
+							src="templates/views/images/logo1.png" alt="isser" class="logo img-responsive">
+						</a> <button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar-collapse-1"
+							aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span> <i
+								class="fa fa-ellipsis-v"></i>
+						</button>
+						<button type="button" class="navbar-toggle mobile-nav-toggle">
+							<i class="fa fa-bars"></i>
+						</button>
+					</div></div></div></nav>
+					<!-- /.navbar-header -->
+
+			
+
+		<!-- ========== WRAPPER FOR BOTH SIDEBARS & MAIN CONTENT ========== -->
+		<div class="content-wrapper">
+			<div class="content-container">
+
+				<!-- /.left-sidebar -->
+
+				<div class="main-page">
+					<!-- <div class="container-fluid">
+						<div class="row page-title-div">
+							<div class="col-md-10">
+								<h2 class="title">Add Employee</h2>
+
+							</div>
+							/.col-md-6
+							<div class="col-md-2 right-side">
+								<a href="dashboard.html"> <img src="templates/views/images/logo.png"
+									alt="isser" class="logo img-responsive"></a>
+							</div>
+							/.col-md-6 text-right
+						</div>
+										</div> -->
+					<!-- /.container-fluid -->
+
+					<section class="section">
+						<div class="container-fluid">
+
+
+							<div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="panel">
+                                         
+                                            <div class="panel-body">
+
+                                                <form name="regEmp">
+                                                  
+<div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="name13">Employee Name</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.name"  ng-change = "setDeletes()" placeholder="Employee Name" ng-required="true">
+                                                        	</div>
+                                                        </div>
+                                                        <!-- /.col-md-6 -->
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="username13">Employee Code</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.employee_code" placeholder="Employee Code" ng-required="true">
+                                                        	</div>
+                                                        </div>
+                                                        <!-- /.col-md-6 -->
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">Select Gender</label>
+                                                        		 <select class="form-control" ng-model="employee.gender" ng-required="true">
+                                                            	<option>male</option>
+                                                            	<option>female</option>
+                                                            </select>
+                                                        	</div>
+                                                    	</div>
+                                                    	<!-- /.col-md-6 -->
+                                                         <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">Email</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.email" placeholder="Email" ng-required="true">
+                                                        	</div>
+                                                    	</div>
+														</div>
+														<div class="row">
+														   <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">Mobile No</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.mobile_no" placeholder="Mobile No" ng-required="true">
+                                                        	</div>
+                                                    	</div>
+														  <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">Address</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.address" placeholder="Address" ng-required="true">
+                                                        	</div>
+                                                    	</div>
+														  <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">Area</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.area_name" placeholder="Area" ng-required="true" >
+                                                        	</div>
+                                                    	</div>
+                                                       <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">City</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.city_name" placeholder="City" ng-required="true">
+                                                        	</div>
+                                                    	</div>
+														   <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">State</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.state_name" placeholder="State" ng-required="true">
+                                                        	</div>
+                                                    	</div>
+														  <div class="col-md-6">
+                                                            <div class="form-group">
+                                                        		<label for="exampleInputEmail13">Country</label>
+                                                        		<input type="text" class="form-control" ng-model="employee.country_name" placeholder="Country" ng-required="true">
+                                                        	</div>
+                                                    	</div>
+                                                    	<!-- /.col-md-6 -->
+                                                    </div>
+
+													
+                                                    <div class="row">
+                                                      
+                                                        <!-- /.col-md-12 -->
+
+                                                        <div class="col-md-12">
+                                                           
+                                                                <button type="submit" class="btn btn-gray btn-wide" ng-click="vm.cancel()"><i class="fa fa-times"></i>Close</button>
+                                                                <button type="submit" ng-disabled="regEmp.$invalid" ng-click="vm.ok(employee)" class="btn bg-black btn-wide"><i class="fa fa-arrow-right"></i>Submit</button>
+                                                            
+                                                            <!-- /.btn-group -->
+                                                        </div>
+                                                        <!-- /.col-md-12 -->
+                                                    </div>
+											</form>
+
+
+											<!-- /.col-md-12 -->
+										</div>
+									</div>
+								</div>
+								<!-- /.col-md-12 -->
+							</div>
+							<!-- /.row -->
+							<!-- /.row -->
+
+						</div>
+						<!-- /.container-fluid -->
+					</section>
+					<!-- /.section -->
+					
+					
+					
+				</div>
+				<!-- /.main-page -->
+
+
+				<!-- /.right-sidebar -->
+
+			</div>
+			<!-- /.content-container -->
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+
+	<!-- submit json data using api  -->
+
+	<!-- /.main-wrapper -->
+
+	<!-- ========== COMMON JS FILES ========== -->
+
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/pace/pace.min.js"></script>
+	<script src="js/lobipanel/lobipanel.min.js"></script>
+	<script src="js/iscroll/iscroll.js"></script>
+
+
+	<!-- ========== PAGE JS FILES ========== -->
+	<script src="js/prism/prism.js"></script>
+
+	<!-- ========== THEME JS ========== -->
+	<script src="js/main.js"></script>
+	<script src="js/edit_table.js"></script>
+
+
+
+	<!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
+</body>
+</html>

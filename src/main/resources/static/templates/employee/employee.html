@@ -1,0 +1,80 @@
+<div class="container-widget">
+	<!-- Start First Row -->
+	<div class="row">
+
+
+		<!-- Start Panel -->
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-title">
+					Employee Management
+					<ul class="panel-tools">
+						<li><a popover-placement="left"
+							uib-popover="Add new entry from here.."
+							popover-trigger="'mouseenter'" class="icon" ng-click="vm.add()">
+							<button type="button" class="btn btn-success"><b>Add Employee</b></button></a></li>
+					</ul>
+				</div>
+				<div class="panel-body table-responsive">
+
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+							<th>ID</th>
+								<th>Employee Name</th>
+								<th>Employee Code</th>
+								<th>Gender</th>
+								<th>E-mail</th>
+								<th>Mobile No.</th>
+								<th>Address</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+
+						<!-- <tfoot>
+							<tr>
+								<th>Name</th>
+								<th>Mobile No</th>
+								<th>Gender</th>
+								<th>Email Id</th>
+								<th>Action</th>
+							</tr>
+						</tfoot> -->
+
+						<tbody>
+							<tr ng-repeat="employee in vm.employees">
+							<td>{{$index+1}}</td>
+								<td>{{employee.name}}</td>
+								<td>{{employee.employee_code}}</td>
+								<td>{{employee.gender}}</td>
+								<td>{{employee.email}}</td>
+								<td>{{employee.mobile_no}}</td>
+								<td>{{employee.address}}, <br>{{employee.area_name}},<br> {{employee.city_name}},<br> {{employee.state_name}},<br> {{employee.country_name}}</td>
+								<td>
+									<button type="button" class="btn btn-info"
+										ng-click="vm.view(employee)">
+										<i class="fa fa-eye" aria-hidden="true"></i>
+									</button>
+									<button type="button" class="btn btn-success"
+										ng-click="vm.add(employee)">
+										<i class="fa fa-edit" aria-hidden="true"></i>
+									</button>
+									<button type="button" class="btn btn-danger"
+										ng-click="vm.delet(employee)">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- End Panel -->
+
+	</div>
+	<!-- End First Row -->
+</div>

@@ -1,0 +1,85 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">
+		Transfer Your Asset
+	</h3>
+</div>
+<div class="modal-body" id="modal-body">
+<!--	<dl class="dl-horizontal">
+		<dt>Asset Id :</dt>
+		<dd>{{vm.items.assets_id}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Barcode</dt>
+		<dd>{{vm.items.old_barcode}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Asset Description</dt>
+		<dd>{{vm.items.descr}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Quantity</dt>
+		<dd>{{vm.items.quantity}}</dd>
+	</dl>
+	 <dl class="dl-horizontal">
+		<dt>Registration Date</dt>
+		<dd>{{vm.items.regdate}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Purchase Date</dt>
+		<dd>{{vm.items.purchase}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Purchase Cost</dt>
+		<dd>{{vm.items.pcost}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Machine SL. No.</dt>
+		<dd>{{vm.items.mslno}}</dd>
+	</dl>
+	
+	<dl class="dl-horizontal">
+		<dt>Barcode</dt>
+		<dd>{{vm.items.barcode}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>Remark</dt>
+		<dd>{{vm.items.remark}}</dd>
+	</dl>
+ -->
+				<div class="row">
+					<div class="col-md-12 col-xs-12">
+						<div class="col-md-12 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">Select Location * :</label> 
+								<select class="form-control"
+								ng-model="asset.location.location_id" name="" 
+								ng-options="location.location_id as location.loc_description for location in vm.locations" required></select>
+							</div>
+						</div>
+						<div class="col-md-12 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">Select Department :</label> 
+								<select class="form-control"
+								ng-model="asset.department.department_id" name="" 
+								ng-options="department.department_id as department.department_name for department in vm.departments"></select>
+							</div>
+						</div>
+						
+						<div class="col-md-12 col-xs-12">
+							<div class="form-group">
+								<label for="fullname">Select Employee :</label> 
+								<select class="form-control"
+								ng-model="asset.employee.employee_id" name="" 
+								ng-options="employee.employee_id as employee.name for employee in vm.employees"></select>
+							</div>
+						</div>
+				
+					</div>
+					
+				</div>
+	
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="vm.ok(asset)"  id="submit1">Transfer</button>
+	<button class="btn btn-warning" type="button" ng-click="vm.cancel()">Close</button>
+</div>

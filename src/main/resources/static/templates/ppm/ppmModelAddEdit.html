@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type"
+	content="application/json ; charset=utf-8" />
+
+<title>Schindler Ppm Manangement</title>
+
+<!-- ========== COMMON STYLES ========== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
+<link rel="stylesheet" href="css/animate-css/animate.min.css"
+	media="screen">
+<link rel="stylesheet" href="css/lobipanel/lobipanel.min.css"
+	media="screen">
+
+<!-- ========== PAGE STYLES ========== -->
+<link rel="stylesheet" href="css/prism/prism.css" media="screen">
+<!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
+<link rel="stylesheet" href="css/icheck/skins/line/blue.css">
+<link rel="stylesheet" href="css/icheck/skins/line/red.css">
+<link rel="stylesheet" href="css/icheck/skins/line/green.css">
+
+<!-- ========== THEME CSS ========== -->
+<link rel="stylesheet" href="css/main.css" media="screen">
+
+<!-- ========== MODERNIZR ========== -->
+<script src="js/modernizr/modernizr.min.js"></script>
+</head>
+<body class="top-navbar-fixed">
+	<div class="main-wrapper">
+		<!-- ========== TOP NAVBAR ========== -->
+		<!-- ========== WRAPPER FOR BOTH SIDEBARS & MAIN CONTENT ========== -->
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col-md-9">
+					<h4 class="modal-title" id="myModalLabel">ADD</h4>
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" ng-click="vm.cancel()">&times;</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form name="regLoc">
+					<div class="row">
+					
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name13">SUPPLIER CODE * </label> <select
+									class="form-control" ng-model="ppm.ppm_suppliercode" name=""
+									ng-change="setDeletes()"
+									ng-options="supplier.supplier_code as supplier.supplier_code for supplier in vm.suppliers"
+									required>
+									<option value="">SELECT SUPPLIER NAME</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name13">SUPPLIER NAME * </label> <select
+									class="form-control" ng-model="ppm.ppm_suppliername" name=""
+									ng-change="setDeletes()"
+									ng-options="supplier.supplier_name as supplier.supplier_name for supplier in vm.suppliers"
+									required>
+									<option value="">SELECT SUPPLIER NAME</option>
+								</select>
+
+							</div>
+						</div>
+						<div class="col-md-6">
+								<div class="form-group">
+									<label for="name13">SUPPLIER TYPE * </label> <select
+										class="form-control" ng-model="ppm.ppm_supplierType" name=""
+										ng-options="suppliertype.suppliertype_type as suppliertype.suppliertype_type for suppliertype in vm.suppliertypes"
+										required>
+										<option value="">SELECT SUPPLIER TYPE</option>
+									</select>
+								</div>
+							</div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name13">YEAR  * </label> <input type="text" name="ppm_year"  ng-pattern="/^(\d)+$/" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+									class="form-control" ng-model="ppm.ppm_year" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">JAN</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_jan" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">FEB</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_feb" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">MAR</label> 
+								<input type="text" ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_mar" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">APR</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_apr" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">MAY</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_may" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">JUNE</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_june" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">JULY</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_july" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">AUG</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_aug" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">SEP</label> 
+								<input type="text"  ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_sep" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">OCT</label> 
+								<input type="text" ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_oct" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">NOV</label> 
+								<input type="text" ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_nov" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">DEC</label> 
+								<input type="text" ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_dec" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name13">YTD</label> 
+								<input type="text" ng-pattern="/^(\d)+$/" class="form-control" ng-model="ppm.ppm_ytd" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" >
+							</div>
+						</div> 
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" id="success"
+					ng-disabled="regLoc.$invalid" ng-click="vm.ok(ppm)">
+					<i class="fa fa-floppy-o" aria-hidden="true"></i>SUBMIT
+				</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal"
+					ng-click="vm.cancel()">
+					<i class="fa fa-times" aria-hidden="true"></i>CLOSE
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- ========== COMMON JS FILES ========== -->
+
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/pace/pace.min.js"></script>
+	<script src="js/lobipanel/lobipanel.min.js"></script>
+	<script src="js/iscroll/iscroll.js"></script>
+
+
+	<!-- ========== PAGE JS FILES ========== -->
+	<script src="js/prism/prism.js"></script>
+
+	<!-- ========== THEME JS ========== -->
+	<script src="js/main.js"></script>
+	<script src="js/edit_table.js"></script>
+
+
+
+	<!-- jQuery -->
+	<script
+		src="templates/skviews/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="templates/skviews/skf/bootstrap/dist/js/tether.min.js"></script>
+	<script src="templates/skviews/skf/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="templates/skviews/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+	<!-- ========== ADD custom.js FILE BELOW WITH YOUR CHANGES ========== -->
+</body>
+</html>

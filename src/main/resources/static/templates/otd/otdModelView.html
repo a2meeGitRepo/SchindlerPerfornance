@@ -1,0 +1,30 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">VIEW</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<dl class="dl-horizontal">
+		<dt>SUPPLIER CODE</dt>
+		<dd>{{vm.items.otd_suppliercode}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>SUPPLIER NAME</dt>
+		<dd>{{vm.items.otd_suppliername}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>SUPPLIER TYPE</dt>
+		<dd>{{vm.items.otd_suppliertype}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>YEAR</dt>
+		<dd>{{vm.items.otd_year}}</dd>
+	</dl>
+	<dl class="dl-horizontal">
+		<dt>YTD</dt>
+		<dd>{{vm.items.otd_ytd}}</dd>
+	</dl>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" type="button" ng-click="vm.cancel()">
+		<i class="fa fa-times" aria-hidden="true"></i>Close
+	</button>
+</div>

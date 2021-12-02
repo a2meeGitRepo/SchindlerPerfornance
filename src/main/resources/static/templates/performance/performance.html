@@ -1,0 +1,117 @@
+<head>
+<link rel="stylesheet" type="text/css" href="Print.css" />
+<link rel="stylesheet" type="text/css" href="printStyle.css" />
+<script src="templates/performance/word/angular-file-model.js"></script> 
+</head>
+
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<h2 class="title">PERFORMANCE CRETERIA</h2>
+		</div>
+
+	</div>
+</div>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="col-md-12 col-xs-12">
+					<div class="col-md-4 col-xs-12">
+						<label style="float: right">Import PPM(.xls) File</label>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<input type="file" id="fileAsset" file-model="myXlFile"
+							onchange="angular.element(this).scope().enable()"
+							class="form-control" ng-required="true" /> <a
+							popover-placement="left" uib-popover="Add new entry from here.."
+							popover-trigger="'mouseenter'" class="icon"> </a>
+					</div>
+					<div class="col-md-1 col-xs-1">
+						<button type="button" id="import" class="btn btn-info"
+							ng-click-options="{preventDoubleClick: true}"
+							ng-dblclick="$event.stopPropagation();"
+							ng-click="vm.uploadPerformamceXlxs()">
+							<i class="fa fa-download" aria-hidden="true"></i>IMPORT
+						</button>
+					</div>
+					<div class="col-md-2 col-xs-2">
+						<button type="button" class="btn btn-info"
+							ng-click="vm.add()">
+							<i class="fa fa-plus" aria-hidden="true"></i>ADD PERFORMANCE
+						</button>
+					</div>
+				</div>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER Type</th>
+								<th>OTD TARGET</th>
+								<th>FPY TARGET</th>
+								<th>PPM TARGET</th>
+								<th>YEAR</th>
+								<th>Word file </th>
+								<th>Choose word file</th>
+								<th>IMPORT</th>
+								<th    style="display: none;" >IMPORT file path</th>
+								<th>SEND MAIL</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="performance in vm.performances">
+								<td>{{$index+1}}</td>
+								<td>{{performance.performance_suppliercode}}</td>
+								<td>{{performance.performance_suppliername}}</td>
+								<td>{{performance.performance_suppliertype}}</td>
+								<td>{{performance.performance_otd}}</td>
+								<td>{{performance.performance_fpy}}</td>
+								<td>{{performance.performance_ppm}}</td>
+								<td>{{performance.performance_year}}</td>
+								<td nowrap>
+									<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="vm.view2(performance); vm.getData(performance)">
+										<i class="fa fa-file-word-o" aria-hidden="true"></i>Export
+									</button>
+								</td>
+								<td nowrap>	
+									<input type="file" id="fileAsset" file-model="vm.myFile" onchange="angular.element(this).scope().file_changed(this)" class="form-control" ng-required="true" /> 
+									<a popover-placement="left" uib-popover="Add new entry from here.." popover-trigger="'mouseenter'" class="icon"> </a>
+								</td>
+								<td nowrap >
+									<button type="button" id="import" class="btn btn-warning"  ng-click="vm.uploadXlxs($index, performance);setWarning()" ng-disabled="isDisabled[{{$index}}]">
+										<i class="fa fa-download" aria-hidden="true"></i>IMPORT
+									</button>
+								</td>
+								<td style="display: none;">
+									<input type="text" class="form-control" ng-model="performance.performance_pdf" ng-value="filePath[{{$index}}]" style="width: 400px;">
+								</td>
+								<td nowrap>
+									<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click=vm.send(performance);vm.send2(performance) ng-disabled="sendDisabled[{{$index}}]">
+										<i class="fa fa-envelope" aria-hidden="true" ></i>SEND
+									</button>
+								</td>
+								<td nowrap>
+									<button type="button" class="btn btn-info" ng-click="vm.view(performance)">
+										<i class="fa fa-eye" aria-hidden="true"></i>VIEW
+									</button>
+									<button type="button" class="btn btn-success"
+										ng-click="vm.add(performance)">
+										<i class="fa fa-edit" aria-hidden="true"></i>EDIT
+									</button>
+									<button type="button" class="btn btn-danger"
+										ng-click="vm.delet(performance)">
+										<i class="fa fa-trash" aria-hidden="true"></i>DELETE
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,236 @@
+<head>
+<script type="text/javascript" src="js/jspdf.debug.js"></script>
+<script type="text/javascript" src="js/jquery.table2excel.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="script.js"></script>
+</head>
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<h2 class="title">HIGH PERFORMANCE</h2>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jspdf.debug.js"></script>
+<div class="container-widget">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-title">
+					<div class="row">
+						<div class="col-md-12 col-xs-12">
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">CRITERIA * </label> <select
+										class="form-control" ng-model="perfor.criteria" name="" ng-change="enable()"
+										required>
+										<option value="">SELECT CRITERIA</option>
+										<option value="otd">OTD</option>
+										<option value="ppm">PPM</option>
+										<option value="fpy">FPY</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="name13">SUPPLIER TYPE</label> 
+									<select class="form-control" ng-model="perfor.type" required ng-options="suppliertype.suppliertype_type as suppliertype.suppliertype_type for suppliertype in vm.suppliertypes">
+										<option value="">ALL</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">YEAR  * </label> <input type="text" ng-change="enable()" maxlength="4"
+										onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : ((event.charCode >= 48 && event.charCode <= 57))"
+										ng-model="perfor.year" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-1 col-xs-12">
+								<div class="form-group" style="position: absolute; top: 20px;">
+									<button class="btn btn-info " ng-click="vm.highPefo(perfor)"  ng-disabled="isDisabled">
+										<i class="fa fa-search"></i>Search
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="fpy">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<span style="font-size: 20px; text-decoration: underline;">FIRST
+					PASS YIELD(FPY)</span>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="t_body1" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>JAN</th>
+								<th>FEB</th>
+								<th>MAR</th>
+								<th>APR</th>
+								<th>MAY</th>
+								<th>JUNE</th>
+								<th>JULY</th>
+								<th>AUG</th>
+								<th>SEP</th>
+								<th>OCT</th>
+								<th>NOV</th>
+								<th>DEC</th>
+								<th>YTD</th>
+							</tr>
+						</thead>
+						<tbody class="text-nowrap">
+							<tr ng-repeat="fpy in vm.arr | orderBy : 'fpy_ytd' : false">
+								<td>{{$index+1}}</td>
+								<td>{{fpy.fpy_suppliercode}}</td>
+								<td>{{fpy.fpy_suppliername}}</td>
+								<td>{{fpy.fpy_suppliertype}}</td>
+								<td>{{fpy.fpy_year}}</td>
+								<td>{{fpy.fpy_jan}}</td>
+								<td>{{fpy.fpy_feb}}</td>
+								<td>{{fpy.fpy_mar}}</td>
+								<td>{{fpy.fpy_apr}}</td>
+								<td>{{fpy.fpy_may}}</td>
+								<td>{{fpy.fpy_june}}</td>
+								<td>{{fpy.fpy_july}}</td>
+								<td>{{fpy.fpy_aug}}</td>
+								<td>{{fpy.fpy_sep}}</td>
+								<td>{{fpy.fpy_oct}}</td>
+								<td>{{fpy.fpy_nov}}</td>
+								<td>{{fpy.fpy_dec}}</td>
+								<td>{{fpy.fpy_ytd}}%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="otd">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<span style="font-size: 20px; text-decoration: underline;">ON
+					TIME DELIVERY(OTD)</span>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="t_body1" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>JAN</th>
+								<th>FEB</th>
+								<th>MAR</th>
+								<th>APR</th>
+								<th>MAY</th>
+								<th>JUNE</th>
+								<th>JULY</th>
+								<th>AUG</th>
+								<th>SEP</th>
+								<th>OCT</th>
+								<th>NOV</th>
+								<th>DEC</th>
+								<th>YTD</th>
+							</tr>
+						</thead>
+						<tbody class="text-nowrap">
+							<tr ng-repeat="otd in vm.arr2 | filter : search">
+								<td>{{$index+1}}   </td>
+								<td>{{otd.otd_suppliercode}}</td>
+								<td>{{otd.otd_suppliername}}</td>
+								<td>{{otd.otd_suppliertype}}</td>
+								<td>{{otd.otd_year}}</td>
+								<td>{{otd.otd_jan}}</td>
+								<td>{{otd.otd_feb}}</td>
+								<td>{{otd.otd_mar}}</td>
+								<td>{{otd.otd_apr}}</td>
+								<td>{{otd.otd_may}}</td>
+								<td>{{otd.otd_june}}</td>
+								<td>{{otd.otd_july}}</td>
+								<td>{{otd.otd_aug}}</td>
+								<td>{{otd.otd_sep}}</td>
+								<td>{{otd.otd_oct}}</td>
+								<td>{{otd.otd_nov}}</td>
+								<td>{{otd.otd_dec}}</td>
+								<td>{{otd.otd_ytd}}%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="ppm">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<span style="font-size: 20px; text-decoration: underline;">PARTS
+					PER MILLION(PPM)</span>
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="t_body1" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>SUPPLIER CODE</th>
+								<th>SUPPLIER NAME</th>
+								<th>SUPPLIER TYPE</th>
+								<th>YEAR</th>
+								<th>JAN</th>
+								<th>FEB</th>
+								<th>MAR</th>
+								<th>APR</th>
+								<th>MAY</th>
+								<th>JUNE</th>
+								<th>JULY</th>
+								<th>AUG</th>
+								<th>SEP</th>
+								<th>OCT</th>
+								<th>NOV</th>
+								<th>DEC</th>
+								<th>YTD</th>
+							</tr>
+						</thead>
+						<tbody class="text-nowrap">
+							<tr ng-repeat="ppm in vm.arr3 | filter : search">
+								<td>{{$index+1}}  </td>
+								<td>{{ppm.ppm_suppliercode}}</td>
+								<td>{{ppm.ppm_suppliername}}</td>
+								<td>{{ppm.ppm_supplierType}}</td>
+								<td>{{ppm.ppm_year}}</td>
+								<td>{{ppm.ppm_jan}}</td>
+								<td>{{ppm.ppm_feb}}</td>
+								<td>{{ppm.ppm_mar}}</td>
+								<td>{{ppm.ppm_apr}}</td>
+								<td>{{ppm.ppm_may}}</td>
+								<td>{{ppm.ppm_june}}</td>
+								<td>{{ppm.ppm_july}}</td>
+								<td>{{ppm.ppm_aug}}</td>
+								<td>{{ppm.ppm_sep}}</td>
+								<td>{{ppm.ppm_oct}}</td>
+								<td>{{ppm.ppm_nov}}</td>
+								<td>{{ppm.ppm_dec}}</td>
+								<td>{{ppm.ppm_ytd}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

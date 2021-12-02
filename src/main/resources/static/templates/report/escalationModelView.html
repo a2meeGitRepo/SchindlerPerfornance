@@ -1,0 +1,59 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">VIEW</h3>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Warning Letter Issue</div>
+				<div class="col-md-7">{{vm.items.escalation_warning}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_warningdate}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Action Plan receive</div>
+				<div class="col-md-7">{{vm.items.escalation_planreceive1}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_planreceive1date}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Action Plan Validated</div>
+				<div class="col-md-7">{{vm.items.escalation_planvalidated1}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_planvalidated1date}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Escalated to level 1</div>
+				<div class="col-md-7">{{vm.items.escalation_level1}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_level1date}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Action Plan receive</div>
+				<div class="col-md-7">{{vm.items.escalation_planreceive2}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_planreceive2date}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Action Plan Validated</div>
+				<div class="col-md-7">{{vm.items.escalation_planvalidated2}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_planvalidated2date}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">De-escalated</div>
+				<div class="col-md-7">{{vm.items.escalation_deescalated}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_deescalateddate}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;margin-bottom: 1%;">
+				<div class="col-md-3" style="padding: 0px;">Escalated to Level 2</div>
+				<div class="col-md-7">{{vm.items.escalation_level2}}</div>
+				<div class="col-md-2" style="padding: 0px;">{{vm.items.escalation_level2date}}</div>
+			</div>
+			<div class="col-md-12" style="border: 1px solid;border: 1px solid;padding: 0.5%;">
+				<div class="col-md-3" style="padding: 0px;">Supplier Discontinued</div>
+				<div class="col-md-7">{{vm.items.escalation_discontinued}}</div>
+				<div class="col-md-2"  style="padding: 0px;">{{vm.items.escalation_date}}</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" type="button" ng-click="vm.cancel()">
+		<i class="fa fa-times" aria-hidden="true"></i>Close
+	</button>
+</div>

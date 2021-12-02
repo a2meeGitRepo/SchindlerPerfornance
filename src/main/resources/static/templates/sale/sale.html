@@ -1,0 +1,150 @@
+<div class="container-fluid">
+	<div class="row page-title-div">
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<h2 class="title">IN TRANSACTION</h2>
+		</div>
+	</div>
+</div>
+
+<div class="container-widget">
+	<!-- Start First Row -->
+	<div class="row">
+		<!-- Start Panel -->
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-title">
+					<div class="row">
+						<div class="col-md-12 col-xs-12">
+							<div class="col-md-12 col-xs-12">
+								<div class="col-md-3 col-xs-12">
+									<div class="form-group">
+										<label for="fullname">Import Sales(.xls) File</label>
+									</div>
+								</div>
+								<div class="col-md-3 col-xs-12">
+									<div class="form-group">
+										<input type="file" id="fileSale" file-model="myFile"
+											placeholder="" class="form-control" required />
+									</div>
+								</div>
+								<div class="col-md-3 col-xs-12">
+									<div class="form-group">
+										<a popover-placement="left"
+											uib-popover="Add new entry from here.."
+											popover-trigger="'mouseenter'" class="icon"
+											ng-click="vm.uploadXlxs()">
+											<button type="button" id="import" class="btn btn-success"
+												ng-click-options="{preventDoubleClick: true}"
+												ng-dblclick="$event.stopPropagation();">
+												<i class="fa fa-download" aria-hidden="true"></i><b>IMPORT</b>
+											</button>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname">Select Salesmen</label>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<select class="form-control" ng-model="sale.acp" name=""
+										ng-options="sale.acp as sale.acp for sale in vm.sales"
+										required>
+										<option value="">Select Salesmen</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<label for="fullname"></label>
+									<button class="btn btn-info" ng-click="vm.search(sale)">
+										<i class="fa fa-search"></i>Search
+									</button>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12">
+								<div class="form-group">
+									<button type="button" class="btn btn-warning"
+										ng-click="sendSelected()" value="submit">
+										<i class="fa fa-share-square"></i>SEND ALL
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel-body table-responsive">
+					<table datatable="ng" id="example" class="table display">
+						<thead class="text-nowrap">
+							<tr>
+								<th>ID</th>
+								<th>Action</th>
+								<td><input type="checkbox" ng-model="active"
+									ng-click="selectAll()" /></td>
+								<th>Document</th>
+								<th>3000 Act finish</th>
+								<th>Project name</th>
+								<th>Sales office</th>
+								<th>Salesmen</th>
+								<th>Plant</th>
+								<th>Supervisor</th>
+								<th>SCAR Days</th>
+								<th>Sales Office - Branch</th>
+								<th>Product Line</th>
+								<th>OC STd Date</th>
+								<th>OC Non Std Date</th>
+								<th>Delivery Address</th>
+								<th>Salesmen Mobile No</th>
+								<th>Salesmen E-mail ID</th>
+
+								<th>Supervisor Mobile No</th>
+								<th>Superviso E-mail ID</th>
+								<th>ACTION</th>
+							</tr>
+						</thead>
+						<tbody class="text-nowrap">
+
+							<tr ng-repeat="sale in vm.sales">
+								<td>{{$index+1}}</td>
+								<td>
+									<button type="button" class="btn btn-danger"
+										ng-click="vm.view(sale); vm.delet(sale)">
+										<i class="fa fa-share-square"></i>SEND
+									</button>
+								</td>
+								<td><input type="checkbox" ng-model="active"
+									ng-change="change(sale, active)"/></td>
+								<td>{{sale.sale_no}}</td>
+								<td>{{sale.disaptch_date}}</td>
+								<td>{{sale.contract}}</td>
+								<td>{{sale.office_code}}</td>
+								<td>{{sale.acp}}</td>
+								<td>{{sale.plant}}</td>
+								<td>{{sale.nip}}</td>
+								<td>{{sale.scar_days}}</td>
+								<td>{{sale.sales_offce}}</td>
+								<td>{{sale.product_line}}</td>
+								<td>{{sale.sch_date}}</td>
+								<td>{{sale.scar_date}}</td>
+								<td>{{sale.site_address}}</td>
+								<td>{{sale.mobile_no}}</td>
+								<td>{{sale.email}}</td>
+
+								<td>{{sale.mobile_no2}}</td>
+								<td>{{sale.email2}}</td>
+								<td><button type="button" class="btn btn-danger"
+										ng-click="vm.delet1(sale)">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
